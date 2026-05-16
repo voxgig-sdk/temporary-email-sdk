@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "message": {
+      "MESSAGE00": {
+        "attachment": [],
+        "body": "s51",
+        "from": "s52",
+        "html_body": "s53",
+        "id": "MESSAGE00",
+        "received_at": "s55",
+        "subject": "s56",
+        "to": "s57"
+      },
+      "MESSAGE01": {
+        "attachment": [],
+        "body": "sa1",
+        "from": "sa2",
+        "html_body": "sa3",
+        "id": "MESSAGE01",
+        "received_at": "sa5",
+        "subject": "sa6",
+        "to": "sa7"
+      },
+      "MESSAGE02": {
+        "attachment": [],
+        "body": "sf1",
+        "from": "sf2",
+        "html_body": "sf3",
+        "id": "MESSAGE02",
+        "received_at": "sf5",
+        "subject": "sf6",
+        "to": "sf7"
+      }
+    }
+  },
+  "new": {
+    "message": {
+      "message_ref01": {
+        "attachment": [],
+        "body": "s141",
+        "from": "s142",
+        "html_body": "s143",
+        "received_at": "s145",
+        "subject": "s146",
+        "to": "s147"
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {
+        "address": "s1e",
+        "created_at": "s1f",
+        "expires_at": "s20"
+      },
+      "EMAIL01": {
+        "address": "s3c",
+        "created_at": "s3d",
+        "expires_at": "s3e"
+      },
+      "EMAIL02": {
+        "address": "s5a",
+        "created_at": "s5b",
+        "expires_at": "s5c"
+      }
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {
+        "address": "s78",
+        "created_at": "s79",
+        "expires_at": "s7a"
+      }
+    }
+  }
+}

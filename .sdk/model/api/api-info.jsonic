@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/l0v3m0n3y/temporarymail"
+      }
+      description: "The Temporary Email API provides users with a way to generate temporary email addresses for secure and anonymous communication. Users can create, check, and manage temporary email addresses, allowing for the receipt of emails without exposing their actual email address."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.temporarymail.com"
+        }
+      ]
+      title: "Temporary Email API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

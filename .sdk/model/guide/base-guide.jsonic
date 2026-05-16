@@ -1,0 +1,28 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: email: {
+    path: "/api/generate": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: inbox: {
+    path: "/api/inbox/{address}": {
+      rename: param: "address": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: message: {
+    path: "/api/message/{messageId}": {
+      rename: param: "messageId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}

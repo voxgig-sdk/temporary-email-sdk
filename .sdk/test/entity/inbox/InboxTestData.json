@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "inbox": {
+      "INBOX00": {
+        "address": "s14",
+        "message": []
+      },
+      "INBOX01": {
+        "address": "s28",
+        "message": []
+      },
+      "INBOX02": {
+        "address": "s3c",
+        "message": []
+      }
+    }
+  },
+  "new": {
+    "inbox": {
+      "inbox_ref01": {
+        "address": "s50",
+        "message": []
+      }
+    }
+  }
+}
