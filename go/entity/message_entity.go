@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/temporary-email-sdk/core"
+	"github.com/voxgig-sdk/temporary-email-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/temporary-email-sdk/go/utility/struct"
 )
 
 type MessageEntity struct {

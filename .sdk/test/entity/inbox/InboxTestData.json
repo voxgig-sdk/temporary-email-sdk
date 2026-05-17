@@ -3,15 +3,18 @@
     "inbox": {
       "INBOX00": {
         "address": "s14",
-        "message": []
+        "message": [],
+        "id": "INBOX00"
       },
       "INBOX01": {
         "address": "s28",
-        "message": []
+        "message": [],
+        "id": "INBOX01"
       },
       "INBOX02": {
         "address": "s3c",
-        "message": []
+        "message": [],
+        "id": "INBOX02"
       }
     }
   },
