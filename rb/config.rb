@@ -15,9 +15,6 @@ module TemporaryEmailConfig
       },
       "options" => {
         "base" => "https://www.temporarymail.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

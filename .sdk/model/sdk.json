@@ -16,7 +16,19 @@
           }
         ],
         "title": "Temporary Email API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Generate disposable email addresses and read incoming messages without registration",
+        "homepage": "https://www.temporarymail.com",
+        "docs_url": "https://freepublicapis.com/temporary-email-api",
+        "license_short": "No explicit licence; usage governed by temporarymail.com Terms of Service",
+        "license_md": "- No software licence is published for the API itself.\n- Use is governed by the [Terms of Service](https://www.temporarymail.com/terms-of-service/) and [Privacy Policy](https://www.temporarymail.com/privacy-policy/) on temporarymail.com.\n- The service is free and does not require account creation.\n- A related open-source project is referenced at [github.com/l0v3m0n3y/temporarymail](https://github.com/l0v3m0n3y/temporarymail); check its repository for any licence terms.",
+        "about_md": "The Temporary Email API is the HTTP interface behind [temporarymail.com](https://www.temporarymail.com), a free disposable-inbox service. It lets you request a throwaway address, then poll for any messages that arrive at it before the address self-destructs.\n\nWhat you get from the API:\n- Request a temporary email address via a `GET` call to `https://temporarymail.com/api/` with `action=requestEmailAccess`.\n- Receive a session-scoped inbox identifier you can use to read messages delivered to that address.\n- Inboxes persist for roughly 7 days before being permanently deleted (per the public service description).\n\nOperational notes: the public endpoint requires no authentication and no API key. CORS is reported as disabled, so browser-side calls from other origins may be blocked; server-side use is recommended. Rate limits are not documented.",
+        "entity_desc": {
+          "email": "A disposable email address allocated to the caller, requested via `GET /api/?action=requestEmailAccess`.",
+          "inbox": "The session-bound mailbox that collects messages sent to a temporary address until it expires (around 7 days).",
+          "message": "An individual email delivered to a temporary inbox, retrievable while the inbox remains active."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +36,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "email": {

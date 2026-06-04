@@ -71,14 +71,12 @@ def message_direct_setup(mockres)
   env = Runner.env_override({
     "TEMPORARYEMAIL_TEST_MESSAGE_ENTID" => {},
     "TEMPORARYEMAIL_TEST_LIVE" => "FALSE",
-    "TEMPORARYEMAIL_APIKEY" => "NONE",
   })
 
   live = env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["TEMPORARYEMAIL_APIKEY"],
     }
     client = TemporaryEmailSDK.new(merged_opts)
     return {

@@ -28,16 +28,13 @@ package main
 
 import (
     "fmt"
-    "os"
 
     sdk "github.com/voxgig-sdk/temporary-email-sdk/go"
     "github.com/voxgig-sdk/temporary-email-sdk/go/core"
 )
 
 func main() {
-    client := sdk.NewTemporaryEmailSDK(map[string]any{
-        "apikey": os.Getenv("TEMPORARY-EMAIL_APIKEY"),
-    })
+    client := sdk.NewTemporaryEmailSDK(map[string]any{})
 ```
 
 ### 3. Load a email
@@ -140,7 +137,6 @@ Create a `.env.local` file at the project root:
 
 ```
 TEMPORARY-EMAIL_TEST_LIVE=TRUE
-TEMPORARY-EMAIL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -162,7 +158,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |
