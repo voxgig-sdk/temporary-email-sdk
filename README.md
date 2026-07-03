@@ -1,19 +1,8 @@
 # TemporaryEmail SDK
 
-Generate disposable email addresses and read incoming messages without registration
+Temporary Email API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Temporary Email API
-
-The Temporary Email API is the HTTP interface behind [temporarymail.com](https://www.temporarymail.com), a free disposable-inbox service. It lets you request a throwaway address, then poll for any messages that arrive at it before the address self-destructs.
-
-What you get from the API:
-- Request a temporary email address via a `GET` call to `https://temporarymail.com/api/` with `action=requestEmailAccess`.
-- Receive a session-scoped inbox identifier you can use to read messages delivered to that address.
-- Inboxes persist for roughly 7 days before being permanently deleted (per the public service description).
-
-Operational notes: the public endpoint requires no authentication and no API key. CORS is reported as disabled, so browser-side calls from other origins may be blocked; server-side use is recommended. Rate limits are not documented.
 
 ## Try it
 
@@ -47,27 +36,31 @@ gem install temporary-email-sdk
 luarocks install temporary-email-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TemporaryEmailSDK } from 'temporary-email'
 
-const client = new TemporaryEmailSDK({})
+const client = new TemporaryEmailSDK({
+  apikey: process.env.TEMPORARY-EMAIL_APIKEY,
+})
 
+// Load email data
+const email = await client.Email().load({})
+console.log(email.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -97,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Email** | A disposable email address allocated to the caller, requested via `GET /api/?action=requestEmailAccess`. | `/api/generate` |
-| **Inbox** | The session-bound mailbox that collects messages sent to a temporary address until it expires (around 7 days). | `/api/inbox/{address}` |
-| **Message** | An individual email delivered to a temporary inbox, retrievable while the inbox remains active. | `/api/message/{messageId}` |
+| **Email** |  | `/api/generate` |
+| **Inbox** |  | `/api/inbox/{address}` |
+| **Message** |  | `/api/message/{messageId}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -109,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from temporaryemail_sdk import TemporaryEmailSDK
 
-client = TemporaryEmailSDK({})
+client = TemporaryEmailSDK({
+    "apikey": os.environ.get("TEMPORARY-EMAIL_APIKEY"),
+})
 
 
 # Load a specific email
-email, err = client.Email(None).load(
-    {"id": "example_id"}, None
-)
+email, err = client.Email().load({"id": "example_id"})
+print(email)
 ```
 
 ### PHP
@@ -126,13 +121,14 @@ email, err = client.Email(None).load(
 <?php
 require_once 'temporaryemail_sdk.php';
 
-$client = new TemporaryEmailSDK([]);
+$client = new TemporaryEmailSDK([
+    "apikey" => getenv("TEMPORARY-EMAIL_APIKEY"),
+]);
 
 
 // Load a specific email
-[$email, $err] = $client->Email(null)->load(
-    ["id" => "example_id"], null
-);
+[$email, $err] = $client->Email()->load(["id" => "example_id"]);
+print_r($email);
 ```
 
 ### Golang
@@ -140,8 +136,13 @@ $client = new TemporaryEmailSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/temporary-email-sdk/go"
 
-client := sdk.NewTemporaryEmailSDK(map[string]any{})
+client := sdk.NewTemporaryEmailSDK(map[string]any{
+    "apikey": os.Getenv("TEMPORARY-EMAIL_APIKEY"),
+})
 
+// Load email data
+email, err := client.Email(nil).Load(map[string]any{}, nil)
+fmt.Println(email)
 ```
 
 ### Ruby
@@ -149,13 +150,14 @@ client := sdk.NewTemporaryEmailSDK(map[string]any{})
 ```ruby
 require_relative "TemporaryEmail_sdk"
 
-client = TemporaryEmailSDK.new({})
+client = TemporaryEmailSDK.new({
+  "apikey" => ENV["TEMPORARY-EMAIL_APIKEY"],
+})
 
 
 # Load a specific email
-email, err = client.Email(nil).load(
-  { "id" => "example_id" }, nil
-)
+email, err = client.Email().load({ "id" => "example_id" })
+puts email
 ```
 
 ### Lua
@@ -163,13 +165,14 @@ email, err = client.Email(nil).load(
 ```lua
 local sdk = require("temporary-email_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TEMPORARY-EMAIL_APIKEY"),
+})
 
 
 -- Load a specific email
-local email, err = client:Email(nil):load(
-  { id = "example_id" }, nil
-)
+local email, err = client:Email():load({ id = "example_id" })
+print(email)
 ```
 
 ## Unit testing in offline mode
@@ -188,25 +191,21 @@ const result = await client.Email().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TemporaryEmailSDK.test(None, None)
-result, err = client.Email(None).load(
-    {"id": "test01"}, None
-)
+client = TemporaryEmailSDK.test()
+result, err = client.Email().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TemporaryEmailSDK::test(null, null);
-[$result, $err] = $client->Email(null)->load(
-    ["id" => "test01"], null
-);
+$client = TemporaryEmailSDK::test();
+[$result, $err] = $client->Email()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Email(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -215,19 +214,15 @@ result, err := client.Email(nil).Load(
 ### Ruby
 
 ```ruby
-client = TemporaryEmailSDK.test(nil, nil)
-result, err = client.Email(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TemporaryEmailSDK.test
+result, err = client.Email().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Email(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Email():load({ id = "test01" })
 ```
 
 ## How it works
@@ -331,16 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Temporary Email API
-
-- Upstream: [https://www.temporarymail.com](https://www.temporarymail.com)
-- API docs: [https://freepublicapis.com/temporary-email-api](https://freepublicapis.com/temporary-email-api)
-
-- No software licence is published for the API itself.
-- Use is governed by the [Terms of Service](https://www.temporarymail.com/terms-of-service/) and [Privacy Policy](https://www.temporarymail.com/privacy-policy/) on temporarymail.com.
-- The service is free and does not require account creation.
-- A related open-source project is referenced at [github.com/l0v3m0n3y/temporarymail](https://github.com/l0v3m0n3y/temporarymail); check its repository for any licence terms.
 
 ---
 

@@ -72,12 +72,14 @@ function inbox_direct_setup(mockres)
   local env = runner.env_override({
     ["TEMPORARYEMAIL_TEST_INBOX_ENTID"] = {},
     ["TEMPORARYEMAIL_TEST_LIVE"] = "FALSE",
+    ["TEMPORARYEMAIL_APIKEY"] = "NONE",
   })
 
   local live = env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["TEMPORARYEMAIL_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
