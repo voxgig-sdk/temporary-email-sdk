@@ -10,7 +10,7 @@ The PHP SDK for the TemporaryEmail API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/temporary-email-sdk
+composer require voxgig-sdk/temporary-email
 ```
 
 

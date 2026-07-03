@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/temporary-email",
-  "description": "TemporaryEmail SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Temporary Email public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "temporary-email"],
+  "homepage": "https://github.com/voxgig-sdk/temporary-email-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/temporary-email-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/temporary-email-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

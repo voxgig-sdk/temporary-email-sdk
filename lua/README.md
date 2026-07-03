@@ -10,7 +10,7 @@ The Lua SDK for the TemporaryEmail API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install temporary-email-sdk
+luarocks install voxgig-sdk-temporary-email
 ```
 
 If the module is not yet published, add the source directory to
