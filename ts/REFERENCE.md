@@ -133,7 +133,7 @@ Alias for `TemporaryEmailSDK.test()`.
 ## EmailEntity
 
 ```ts
-const email = client.email
+const email = client.Email()
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ const email = client.email
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.email.load({ id: 'email_id' })
+const result = await client.Email().load({ id: 'email_id' })
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return a copy of the entity options.
 ## InboxEntity
 
 ```ts
-const inbox = client.inbox
+const inbox = client.Inbox()
 ```
 
 ### Fields
@@ -202,7 +202,7 @@ const inbox = client.inbox
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.inbox.load({ id: 'inbox_id' })
+const result = await client.Inbox().load({ id: 'inbox_id' })
 ```
 
 ### Common Methods
@@ -236,7 +236,7 @@ Return a copy of the entity options.
 ## MessageEntity
 
 ```ts
-const message = client.message
+const message = client.Message()
 ```
 
 ### Fields
@@ -259,7 +259,7 @@ const message = client.message
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.message.load({ id: 'message_id' })
+const result = await client.Message().load({ id: 'message_id' })
 ```
 
 ### Common Methods

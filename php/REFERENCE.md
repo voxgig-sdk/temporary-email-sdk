@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EmailEntity
 
 ```php
-$email = $client->email();
+$email = $client->Email();
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ $email = $client->email();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->email()->load(["id" => "email_id"]);
+$result = $client->Email()->load(["id" => "email_id"]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## InboxEntity
 
 ```php
-$inbox = $client->inbox();
+$inbox = $client->Inbox();
 ```
 
 ### Fields
@@ -164,7 +164,7 @@ $inbox = $client->inbox();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->inbox()->load(["id" => "inbox_id"]);
+$result = $client->Inbox()->load(["id" => "inbox_id"]);
 ```
 
 ### Common Methods
@@ -200,7 +200,7 @@ Return the entity name.
 ## MessageEntity
 
 ```php
-$message = $client->message();
+$message = $client->Message();
 ```
 
 ### Fields
@@ -223,7 +223,7 @@ $message = $client->message();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->message()->load(["id" => "message_id"]);
+$result = $client->Message()->load(["id" => "message_id"]);
 ```
 
 ### Common Methods

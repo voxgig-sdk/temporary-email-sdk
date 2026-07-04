@@ -220,57 +220,27 @@ class TemporaryEmailSDK:
         }
 
 
-    @property
-    def email(self):
-        """Idiomatic facade: client.email.list() / client.email.load({"id": ...})."""
-        from entity.email_entity import EmailEntity
-        cached = getattr(self, "_email", None)
-        if cached is None:
-            cached = EmailEntity(self, None)
-            self._email = cached
-        return cached
-
-    def Email(self, data=None):
-        # Deprecated: use client.email instead.
+    def Email(self, data=None) -> "EmailEntity":
+        """Entity factory: client.Email().list({}) / client.Email().load({"id": ...})."""
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
-    @property
-    def inbox(self):
-        """Idiomatic facade: client.inbox.list() / client.inbox.load({"id": ...})."""
-        from entity.inbox_entity import InboxEntity
-        cached = getattr(self, "_inbox", None)
-        if cached is None:
-            cached = InboxEntity(self, None)
-            self._inbox = cached
-        return cached
-
-    def Inbox(self, data=None):
-        # Deprecated: use client.inbox instead.
+    def Inbox(self, data=None) -> "InboxEntity":
+        """Entity factory: client.Inbox().list({}) / client.Inbox().load({"id": ...})."""
         from entity.inbox_entity import InboxEntity
         return InboxEntity(self, data)
 
 
-    @property
-    def message(self):
-        """Idiomatic facade: client.message.list() / client.message.load({"id": ...})."""
-        from entity.message_entity import MessageEntity
-        cached = getattr(self, "_message", None)
-        if cached is None:
-            cached = MessageEntity(self, None)
-            self._message = cached
-        return cached
-
-    def Message(self, data=None):
-        # Deprecated: use client.message instead.
+    def Message(self, data=None) -> "MessageEntity":
+        """Entity factory: client.Message().list({}) / client.Message().load({"id": ...})."""
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TemporaryEmailSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class TemporaryEmailSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.email_entity import EmailEntity
+    from entity.inbox_entity import InboxEntity
+    from entity.message_entity import MessageEntity

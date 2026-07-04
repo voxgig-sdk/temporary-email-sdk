@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## EmailEntity
 
 ```python
-email = client.email
+email = client.Email()
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ email = client.email
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.email.load({"id": "email_id"})
+result = client.Email().load({"id": "email_id"})
 ```
 
 ### Common Methods
@@ -141,7 +141,7 @@ Return the entity name.
 ## InboxEntity
 
 ```python
-inbox = client.inbox
+inbox = client.Inbox()
 ```
 
 ### Fields
@@ -158,7 +158,7 @@ inbox = client.inbox
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.inbox.load({"id": "inbox_id"})
+result = client.Inbox().load({"id": "inbox_id"})
 ```
 
 ### Common Methods
@@ -193,7 +193,7 @@ Return the entity name.
 ## MessageEntity
 
 ```python
-message = client.message
+message = client.Message()
 ```
 
 ### Fields
@@ -216,7 +216,7 @@ message = client.message
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.message.load({"id": "message_id"})
+result = client.Message().load({"id": "message_id"})
 ```
 
 ### Common Methods

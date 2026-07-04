@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## EmailEntity
 
 ```lua
-local email = client:email(nil)
+local email = client:Email(nil)
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ local email = client:email(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:email():load({ id = "email_id" })
+local result, err = client:Email():load({ id = "email_id" })
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## InboxEntity
 
 ```lua
-local inbox = client:inbox(nil)
+local inbox = client:Inbox(nil)
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ local inbox = client:inbox(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:inbox():load({ id = "inbox_id" })
+local result, err = client:Inbox():load({ id = "inbox_id" })
 ```
 
 ### Common Methods
@@ -198,7 +198,7 @@ Return the entity name.
 ## MessageEntity
 
 ```lua
-local message = client:message(nil)
+local message = client:Message(nil)
 ```
 
 ### Fields
@@ -221,7 +221,7 @@ local message = client:message(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:message():load({ id = "message_id" })
+local result, err = client:Message():load({ id = "message_id" })
 ```
 
 ### Common Methods

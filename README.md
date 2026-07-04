@@ -26,9 +26,9 @@ import { TemporaryEmailSDK } from '@voxgig-sdk/temporary-email'
 
 const client = new TemporaryEmailSDK()
 
-// Load email data
-const email = await client.email.load({})
-console.log(email.data)
+// Load email data (returns a Email)
+const email = await client.Email().load()
+console.log(email)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -86,8 +86,8 @@ from temporaryemail_sdk import TemporaryEmailSDK
 client = TemporaryEmailSDK()
 
 
-# Load a specific email
-email = client.email.load({"id": "example_id"})
+# Load a specific email (returns the record, raises on error)
+email = client.Email().load({"id": "example_id"})
 print(email)
 ```
 
@@ -100,8 +100,8 @@ require_once 'temporaryemail_sdk.php';
 $client = new TemporaryEmailSDK();
 
 
-// Load a specific email
-$email = $client->email()->load(["id" => "example_id"]);
+// Load a specific email (returns the bare record; throws on error)
+$email = $client->Email()->load(["id" => "example_id"]);
 print_r($email);
 ```
 
@@ -125,8 +125,8 @@ require_relative "TemporaryEmail_sdk"
 client = TemporaryEmailSDK.new
 
 
-# Load a specific email
-email = client.email.load({ "id" => "example_id" })
+# Load a specific email (returns the bare record; raises on error)
+email = client.Email.load({ "id" => "example_id" })
 puts email
 ```
 
@@ -139,7 +139,7 @@ local client = sdk.new()
 
 
 -- Load a specific email
-local email, err = client:email():load({ id = "example_id" })
+local email, err = client:Email():load({ id = "example_id" })
 print(email)
 ```
 
@@ -152,22 +152,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TemporaryEmailSDK.test()
-const result = await client.email.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const email = await client.Email().load({ id: 'test01' })
+// email is a bare Email populated with mock data
+console.log(email)
 ```
 
 ### Python
 
 ```python
 client = TemporaryEmailSDK.test()
-result = client.email.load({"id": "test01"})
+email = client.Email().load({"id": "test01"})
+print(email)
 ```
 
 ### PHP
 
 ```php
-$client = TemporaryEmailSDK::test();
-$result = $client->email()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TemporaryEmailSDK::test([
+    "entity" => ["email" => ["test01" => ["id" => "test01"]]],
+]);
+$email = $client->Email()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -182,15 +187,18 @@ result, err := client.Email(nil).Load(
 ### Ruby
 
 ```ruby
-client = TemporaryEmailSDK.test
-result = client.email.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TemporaryEmailSDK.test({
+  "entity" => { "email" => { "test01" => { "id" => "test01" } } },
+})
+email = client.Email.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:email():load({ id = "test01" })
+local result, err = client:Email():load({ id = "test01" })
 ```
 
 ## How it works
@@ -238,6 +246,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

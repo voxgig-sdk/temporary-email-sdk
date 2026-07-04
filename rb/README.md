@@ -32,8 +32,9 @@ client = TemporaryEmailSDK.new
 
 ```ruby
 begin
-  result = client.email.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Email record (raises on error).
+  email = client.Email.load({ "id" => "example_id" })
+  puts email
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = TemporaryEmailSDK.test
+client = TemporaryEmailSDK.test({
+  "entity" => { "email" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.email.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+email = client.Email.load({ "id" => "test01" })
+puts email
 ```
 
 ### Use a custom fetch function
@@ -162,8 +167,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Email` | `(data) -> EmailEntity` | Create a Email entity instance. |
-| `Inbox` | `(data) -> InboxEntity` | Create a Inbox entity instance. |
+| `Email` | `(data) -> EmailEntity` | Create an Email entity instance. |
+| `Inbox` | `(data) -> InboxEntity` | Create an Inbox entity instance. |
 | `Message` | `(data) -> MessageEntity` | Create a Message entity instance. |
 
 ### Entity interface
@@ -250,7 +255,7 @@ API path: `/api/message/{messageId}`
 
 ### Email
 
-Create an instance: `const email = client.email`
+Create an instance: `email = client.Email`
 
 #### Operations
 
@@ -268,14 +273,15 @@ Create an instance: `const email = client.email`
 
 #### Example: Load
 
-```ts
-const email = await client.email.load({ id: 'email_id' })
+```ruby
+# load returns the bare Email record (raises on error).
+email = client.Email.load({ "id" => "email_id" })
 ```
 
 
 ### Inbox
 
-Create an instance: `const inbox = client.inbox`
+Create an instance: `inbox = client.Inbox`
 
 #### Operations
 
@@ -292,14 +298,15 @@ Create an instance: `const inbox = client.inbox`
 
 #### Example: Load
 
-```ts
-const inbox = await client.inbox.load({ id: 'inbox_id' })
+```ruby
+# load returns the bare Inbox record (raises on error).
+inbox = client.Inbox.load({ "id" => "inbox_id" })
 ```
 
 
 ### Message
 
-Create an instance: `const message = client.message`
+Create an instance: `message = client.Message`
 
 #### Operations
 
@@ -322,8 +329,9 @@ Create an instance: `const message = client.message`
 
 #### Example: Load
 
-```ts
-const message = await client.message.load({ id: 'message_id' })
+```ruby
+# load returns the bare Message record (raises on error).
+message = client.Message.load({ "id" => "message_id" })
 ```
 
 
@@ -398,7 +406,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-email = client.email
+email = client.Email
 email.load({ "id" => "example_id" })
 
 # email.data_get now returns the loaded email data

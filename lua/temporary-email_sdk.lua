@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:email():list() / client:email():load({ id = ... })
-function TemporaryEmailSDK:email(data)
+-- Idiomatic facade: client:Email():list() / client:Email():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TemporaryEmailSDK:Email(data)
   local EntityMod = require("entity.email_entity")
   if data == nil then
     if self._email == nil then
@@ -256,15 +257,10 @@ function TemporaryEmailSDK:email(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:email() instead.
-function TemporaryEmailSDK:Email(data)
-  local EntityMod = require("entity.email_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:inbox():list() / client:inbox():load({ id = ... })
-function TemporaryEmailSDK:inbox(data)
+-- Idiomatic facade: client:Inbox():list() / client:Inbox():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TemporaryEmailSDK:Inbox(data)
   local EntityMod = require("entity.inbox_entity")
   if data == nil then
     if self._inbox == nil then
@@ -275,15 +271,10 @@ function TemporaryEmailSDK:inbox(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:inbox() instead.
-function TemporaryEmailSDK:Inbox(data)
-  local EntityMod = require("entity.inbox_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:message():list() / client:message():load({ id = ... })
-function TemporaryEmailSDK:message(data)
+-- Idiomatic facade: client:Message():list() / client:Message():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TemporaryEmailSDK:Message(data)
   local EntityMod = require("entity.message_entity")
   if data == nil then
     if self._message == nil then
@@ -291,12 +282,6 @@ function TemporaryEmailSDK:message(data)
     end
     return self._message
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:message() instead.
-function TemporaryEmailSDK:Message(data)
-  local EntityMod = require("entity.message_entity")
   return EntityMod.new(self, data)
 end
 

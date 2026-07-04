@@ -206,42 +206,21 @@ class TemporaryEmailSDK {
 
 
 
-  _email?: EmailEntity
-
-  // Idiomatic facade: `client.email.list()` / `client.email.load({ id })`.
-  get email(): EmailEntity {
-    return (this._email ??= new EmailEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.email` instead. */
+  // Entity access: `client.Email().list()` / `client.Email().load({ id })`.
   Email(data?: any) {
     const self = this
     return new EmailEntity(self,data)
   }
 
 
-  _inbox?: InboxEntity
-
-  // Idiomatic facade: `client.inbox.list()` / `client.inbox.load({ id })`.
-  get inbox(): InboxEntity {
-    return (this._inbox ??= new InboxEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.inbox` instead. */
+  // Entity access: `client.Inbox().list()` / `client.Inbox().load({ id })`.
   Inbox(data?: any) {
     const self = this
     return new InboxEntity(self,data)
   }
 
 
-  _message?: MessageEntity
-
-  // Idiomatic facade: `client.message.list()` / `client.message.load({ id })`.
-  get message(): MessageEntity {
-    return (this._message ??= new MessageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.message` instead. */
+  // Entity access: `client.Message().list()` / `client.Message().load({ id })`.
   Message(data?: any) {
     const self = this
     return new MessageEntity(self,data)
