@@ -4,6 +4,8 @@ import { EmailEntity } from './entity/EmailEntity'
 import { InboxEntity } from './entity/InboxEntity'
 import { MessageEntity } from './entity/MessageEntity'
 
+export type * from './TemporaryEmailTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class TemporaryEmailSDK {
 
 
 
+  _email?: EmailEntity
+
+  // Idiomatic facade: `client.email.list()` / `client.email.load({ id })`.
+  get email(): EmailEntity {
+    return (this._email ??= new EmailEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.email` instead. */
   Email(data?: any) {
     const self = this
     return new EmailEntity(self,data)
   }
 
 
+  _inbox?: InboxEntity
+
+  // Idiomatic facade: `client.inbox.list()` / `client.inbox.load({ id })`.
+  get inbox(): InboxEntity {
+    return (this._inbox ??= new InboxEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.inbox` instead. */
   Inbox(data?: any) {
     const self = this
     return new InboxEntity(self,data)
   }
 
 
+  _message?: MessageEntity
+
+  // Idiomatic facade: `client.message.list()` / `client.message.load({ id })`.
+  get message(): MessageEntity {
+    return (this._message ??= new MessageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.message` instead. */
   Message(data?: any) {
     const self = this
     return new MessageEntity(self,data)

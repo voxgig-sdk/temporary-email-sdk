@@ -245,16 +245,25 @@ func (sdk *TemporaryEmailSDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// Email returns a Email entity bound to this client.
+// Idiomatic usage: client.Email(nil).List(nil, nil) or
+// client.Email(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TemporaryEmailSDK) Email(data map[string]any) TemporaryEmailEntity {
 	return NewEmailEntityFunc(sdk, data)
 }
 
 
+// Inbox returns a Inbox entity bound to this client.
+// Idiomatic usage: client.Inbox(nil).List(nil, nil) or
+// client.Inbox(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TemporaryEmailSDK) Inbox(data map[string]any) TemporaryEmailEntity {
 	return NewInboxEntityFunc(sdk, data)
 }
 
 
+// Message returns a Message entity bound to this client.
+// Idiomatic usage: client.Message(nil).List(nil, nil) or
+// client.Message(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TemporaryEmailSDK) Message(data map[string]any) TemporaryEmailEntity {
 	return NewMessageEntityFunc(sdk, data)
 }

@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `dict` | SDK configuration options. |
-| `options["apikey"]` | `str` | API key for authentication. |
 | `options["base"]` | `str` | Base URL for API requests. |
 | `options["prefix"]` | `str` | URL prefix appended after base. |
 | `options["suffix"]` | `str` | URL suffix appended after path. |
@@ -62,9 +61,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -77,11 +76,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -89,7 +88,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## EmailEntity
 
 ```python
-email = client.Email()
+email = client.email
 ```
 
 ### Fields
@@ -102,12 +101,12 @@ email = client.Email()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Email().load({"id": "email_id"})
+result = client.email.load({"id": "email_id"})
 ```
 
 ### Common Methods
@@ -142,7 +141,7 @@ Return the entity name.
 ## InboxEntity
 
 ```python
-inbox = client.Inbox()
+inbox = client.inbox
 ```
 
 ### Fields
@@ -154,12 +153,12 @@ inbox = client.Inbox()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Inbox().load({"id": "inbox_id"})
+result = client.inbox.load({"id": "inbox_id"})
 ```
 
 ### Common Methods
@@ -194,7 +193,7 @@ Return the entity name.
 ## MessageEntity
 
 ```python
-message = client.Message()
+message = client.message
 ```
 
 ### Fields
@@ -212,12 +211,12 @@ message = client.Message()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Message().load({"id": "message_id"})
+result = client.message.load({"id": "message_id"})
 ```
 
 ### Common Methods

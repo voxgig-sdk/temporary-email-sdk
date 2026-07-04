@@ -20,9 +20,6 @@ class TemporaryEmailConfig
             ],
             "options" => [
                 "base" => "https://www.temporarymail.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -121,6 +118,7 @@ class TemporaryEmailConfig
                         'orig' => 'address',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -231,6 +229,7 @@ class TemporaryEmailConfig
                         'orig' => 'message_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

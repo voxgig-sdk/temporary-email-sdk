@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## EmailEntity
 
 ```lua
-local email = client:Email(nil)
+local email = client:email(nil)
 ```
 
 ### Fields
@@ -110,7 +109,7 @@ local email = client:Email(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Email():load({ id = "email_id" })
+local result, err = client:email():load({ id = "email_id" })
 ```
 
 ### Common Methods
@@ -146,7 +145,7 @@ Return the entity name.
 ## InboxEntity
 
 ```lua
-local inbox = client:Inbox(nil)
+local inbox = client:inbox(nil)
 ```
 
 ### Fields
@@ -163,7 +162,7 @@ local inbox = client:Inbox(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Inbox():load({ id = "inbox_id" })
+local result, err = client:inbox():load({ id = "inbox_id" })
 ```
 
 ### Common Methods
@@ -199,7 +198,7 @@ Return the entity name.
 ## MessageEntity
 
 ```lua
-local message = client:Message(nil)
+local message = client:message(nil)
 ```
 
 ### Fields
@@ -222,7 +221,7 @@ local message = client:Message(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Message():load({ id = "message_id" })
+local result, err = client:message():load({ id = "message_id" })
 ```
 
 ### Common Methods

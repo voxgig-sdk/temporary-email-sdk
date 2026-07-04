@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://www.temporarymail.com",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -115,6 +112,7 @@ local function make_config()
                       ["orig"] = "address",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },
@@ -225,6 +223,7 @@ local function make_config()
                       ["orig"] = "message_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },

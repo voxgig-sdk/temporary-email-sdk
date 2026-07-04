@@ -15,9 +15,6 @@ module TemporaryEmailConfig
       },
       "options" => {
         "base" => "https://www.temporarymail.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -116,6 +113,7 @@ module TemporaryEmailConfig
                         "orig" => "address",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -226,6 +224,7 @@ module TemporaryEmailConfig
                         "orig" => "message_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

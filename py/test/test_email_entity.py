@@ -49,8 +49,7 @@ class TestEmailEntity:
         # LOAD
         email_ref01_ent = client.Email(None)
         email_ref01_match_dt0 = {}
-        email_ref01_data_dt0_loaded, err = email_ref01_ent.load(email_ref01_match_dt0, None)
-        assert err is None
+        email_ref01_data_dt0_loaded = email_ref01_ent.load(email_ref01_match_dt0, None)
         assert email_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _email_basic_setup(extra):
         "TEMPORARYEMAIL_TEST_EMAIL_ENTID": idmap,
         "TEMPORARYEMAIL_TEST_LIVE": "FALSE",
         "TEMPORARYEMAIL_TEST_EXPLAIN": "FALSE",
-        "TEMPORARYEMAIL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _email_basic_setup(extra):
     if env.get("TEMPORARYEMAIL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TEMPORARYEMAIL_APIKEY"),
             },
             extra or {},
         ])

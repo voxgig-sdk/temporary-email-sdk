@@ -44,8 +44,7 @@ class MessageEntityTest < Minitest::Test
     message_ref01_match_dt0 = {
       "id" => message_ref01_data["id"],
     }
-    message_ref01_data_dt0_loaded, err = message_ref01_ent.load(message_ref01_match_dt0, nil)
-    assert_nil err
+    message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, nil)
     message_ref01_data_dt0_load_result = Helpers.to_map(message_ref01_data_dt0_loaded)
     assert !message_ref01_data_dt0_load_result.nil?
     assert_equal message_ref01_data_dt0_load_result["id"], message_ref01_data["id"]
@@ -86,7 +85,6 @@ def message_basic_setup(extra)
     "TEMPORARYEMAIL_TEST_MESSAGE_ENTID" => idmap,
     "TEMPORARYEMAIL_TEST_LIVE" => "FALSE",
     "TEMPORARYEMAIL_TEST_EXPLAIN" => "FALSE",
-    "TEMPORARYEMAIL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -98,7 +96,6 @@ def message_basic_setup(extra)
   if env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TEMPORARYEMAIL_APIKEY"],
       },
       extra || {},
     ])

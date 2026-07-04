@@ -49,8 +49,7 @@ class TestInboxEntity:
         # LOAD
         inbox_ref01_ent = client.Inbox(None)
         inbox_ref01_match_dt0 = {}
-        inbox_ref01_data_dt0_loaded, err = inbox_ref01_ent.load(inbox_ref01_match_dt0, None)
-        assert err is None
+        inbox_ref01_data_dt0_loaded = inbox_ref01_ent.load(inbox_ref01_match_dt0, None)
         assert inbox_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _inbox_basic_setup(extra):
         "TEMPORARYEMAIL_TEST_INBOX_ENTID": idmap,
         "TEMPORARYEMAIL_TEST_LIVE": "FALSE",
         "TEMPORARYEMAIL_TEST_EXPLAIN": "FALSE",
-        "TEMPORARYEMAIL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _inbox_basic_setup(extra):
     if env.get("TEMPORARYEMAIL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TEMPORARYEMAIL_APIKEY"),
             },
             extra or {},
         ])
