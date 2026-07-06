@@ -98,9 +98,9 @@ local email = client:Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `expires_at` | `string` | No |  |
 
 ### Operations
 
@@ -109,7 +109,7 @@ local email = client:Email(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Email():load({ id = "email_id" })
+local result, err = client:Email():load()
 ```
 
 ### Common Methods
@@ -152,8 +152,8 @@ local inbox = client:Inbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `string` | No |  |
+| `message` | `table` | No |  |
 
 ### Operations
 
@@ -205,14 +205,14 @@ local message = client:Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `table` | No |  |
+| `body` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html_body` | `string` | No |  |
+| `id` | `string` | No |  |
+| `received_at` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 

@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmail Python SDK.
 ### Constructor
 
 ```python
-from temporary-email_sdk import TemporaryEmailSDK
+from temporaryemail_sdk import TemporaryEmailSDK
 
 client = TemporaryEmailSDK(options)
 ```
@@ -95,9 +95,9 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `str` | Yes |  |
+| `created_at` | `str` | No |  |
+| `expires_at` | `str` | No |  |
 
 ### Operations
 
@@ -106,7 +106,7 @@ email = client.Email()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Email().load({"id": "email_id"})
+result = client.Email().load()
 ```
 
 ### Common Methods
@@ -148,8 +148,8 @@ inbox = client.Inbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `str` | No |  |
+| `message` | `list` | No |  |
 
 ### Operations
 
@@ -200,14 +200,14 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `list` | No |  |
+| `body` | `str` | No |  |
+| `from` | `str` | No |  |
+| `html_body` | `str` | No |  |
+| `id` | `str` | No |  |
+| `received_at` | `str` | No |  |
+| `subject` | `str` | No |  |
+| `to` | `str` | No |  |
 
 ### Operations
 

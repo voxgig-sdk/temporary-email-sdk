@@ -11,7 +11,11 @@ export interface Email {
   expires_at?: string
 }
 
-export type EmailLoadMatch = Partial<Email>
+export interface EmailLoadMatch {
+  address?: string
+  created_at?: string
+  expires_at?: string
+}
 
 export interface Inbox {
   address?: string

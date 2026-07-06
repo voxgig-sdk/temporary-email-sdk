@@ -15,8 +15,7 @@ type Email struct {
 	ExpiresAt *string `json:"expires_at,omitempty"`
 }
 
-// EmailLoadMatch mirrors the email fields as an all-optional match
-// filter (Go analog of Partial<Email>).
+// EmailLoadMatch is the typed request payload for Email.LoadTyped.
 type EmailLoadMatch struct {
 	Address *string `json:"address,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`

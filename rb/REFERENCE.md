@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmail Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'temporary-email_sdk'
+require_relative 'TemporaryEmail_sdk'
 
 client = TemporaryEmailSDK.new(options)
 ```
@@ -101,9 +101,9 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `String` | Yes |  |
+| `created_at` | `String` | No |  |
+| `expires_at` | `String` | No |  |
 
 ### Operations
 
@@ -112,7 +112,7 @@ email = client.Email
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Email.load({ "id" => "email_id" })
+result = client.Email.load()
 ```
 
 ### Common Methods
@@ -155,8 +155,8 @@ inbox = client.Inbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `String` | No |  |
+| `message` | `Array` | No |  |
 
 ### Operations
 
@@ -208,14 +208,14 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `Array` | No |  |
+| `body` | `String` | No |  |
+| `from` | `String` | No |  |
+| `html_body` | `String` | No |  |
+| `id` | `String` | No |  |
+| `received_at` | `String` | No |  |
+| `subject` | `String` | No |  |
+| `to` | `String` | No |  |
 
 ### Operations
 

@@ -20,7 +20,7 @@ class Email
     public ?string $expires_at = null;
 }
 
-/** Match filter for Email#load (any subset of Email fields). */
+/** Request payload for Email#load. */
 class EmailLoadMatch
 {
     public ?string $address = null;

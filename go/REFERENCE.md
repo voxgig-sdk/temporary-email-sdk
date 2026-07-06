@@ -105,9 +105,9 @@ email := client.Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `expires_at` | `string` | No |  |
 
 ### Operations
 
@@ -116,7 +116,7 @@ email := client.Email(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Email(nil).Load(map[string]any{"id": "email_id"}, nil)
+result, err := client.Email(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -153,8 +153,8 @@ inbox := client.Inbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `string` | No |  |
+| `message` | `[]any` | No |  |
 
 ### Operations
 
@@ -200,14 +200,14 @@ message := client.Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `[]any` | No |  |
+| `body` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html_body` | `string` | No |  |
+| `id` | `string` | No |  |
+| `received_at` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 

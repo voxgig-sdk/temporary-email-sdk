@@ -221,19 +221,19 @@ class TemporaryEmailSDK:
 
 
     def Email(self, data=None) -> "EmailEntity":
-        """Entity factory: client.Email().list({}) / client.Email().load({"id": ...})."""
+        """Entity factory: client.Email().list() / client.Email().load({"id": ...})."""
         from entity.email_entity import EmailEntity
         return EmailEntity(self, data)
 
 
     def Inbox(self, data=None) -> "InboxEntity":
-        """Entity factory: client.Inbox().list({}) / client.Inbox().load({"id": ...})."""
+        """Entity factory: client.Inbox().list() / client.Inbox().load({"id": ...})."""
         from entity.inbox_entity import InboxEntity
         return InboxEntity(self, data)
 
 
     def Message(self, data=None) -> "MessageEntity":
-        """Entity factory: client.Message().list({}) / client.Message().load({"id": ...})."""
+        """Entity factory: client.Message().list() / client.Message().load({"id": ...})."""
         from entity.message_entity import MessageEntity
         return MessageEntity(self, data)
 

@@ -8,7 +8,7 @@ Complete API reference for the TemporaryEmail PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/temporary-email_sdk.php';
+require_once __DIR__ . '/temporaryemail_sdk.php';
 
 $client = new TemporaryEmailSDK($options);
 ```
@@ -53,11 +53,11 @@ Create a new `InboxEntity` instance. Pass `null` for no initial data.
 
 Create a new `MessageEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TemporaryEmailUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,9 +100,9 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `expires_at` | `string` | No |  |
 
 ### Operations
 
@@ -111,24 +111,24 @@ $email = $client->Email();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Email()->load(["id" => "email_id"]);
+$result = $client->Email()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -137,7 +137,7 @@ Set the entity match criteria.
 Create a new `EmailEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -154,8 +154,8 @@ $inbox = $client->Inbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `string` | No |  |
+| `message` | `array` | No |  |
 
 ### Operations
 
@@ -169,19 +169,19 @@ $result = $client->Inbox()->load(["id" => "inbox_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -190,7 +190,7 @@ Set the entity match criteria.
 Create a new `InboxEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -207,14 +207,14 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `array` | No |  |
+| `body` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html_body` | `string` | No |  |
+| `id` | `string` | No |  |
+| `received_at` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -228,19 +228,19 @@ $result = $client->Message()->load(["id" => "message_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -249,7 +249,7 @@ Set the entity match criteria.
 Create a new `MessageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

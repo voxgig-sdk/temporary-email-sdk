@@ -12,6 +12,9 @@
 ---@field expires_at? string
 
 ---@class EmailLoadMatch
+---@field address? string
+---@field created_at? string
+---@field expires_at? string
 
 ---@class Inbox
 ---@field address? string

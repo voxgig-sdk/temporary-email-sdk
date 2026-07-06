@@ -4,6 +4,8 @@
 
 The Lua SDK for the TemporaryEmail API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Email()` — each with the same small set of operations (`load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,9 +36,31 @@ local client = sdk.new()
 ### 3. Load an email
 
 ```lua
-local email, err = client:Email():load({ id = "example_id" })
+local email, err = client:Email():load()
 if err then error(err) end
 print(email)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local email, err = client:Email():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -82,8 +106,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Email():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Email():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -172,10 +196,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -190,12 +210,11 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
+| `load` | the entity record (a `table`) |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local email, err = client:Email():load({ id = "example_id" })
+    local email, err = client:Email():load()
     if err then error(err) end
     -- email is the loaded record
 
@@ -263,14 +282,14 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `created_at` | ``$STRING`` |  |
-| `expires_at` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `created_at` | `string` |  |
+| `expires_at` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local email, err = client:Email():load({ id = "email_id" })
+local email, err = client:Email():load()
 ```
 
 
@@ -288,8 +307,8 @@ Create an instance: `local inbox = client:Inbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `message` | ``$ARRAY`` |  |
+| `address` | `string` |  |
+| `message` | `table` |  |
 
 #### Example: Load
 
@@ -312,14 +331,14 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | ``$ARRAY`` |  |
-| `body` | ``$STRING`` |  |
-| `from` | ``$STRING`` |  |
-| `html_body` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `received_at` | ``$STRING`` |  |
-| `subject` | ``$STRING`` |  |
-| `to` | ``$STRING`` |  |
+| `attachment` | `table` |  |
+| `body` | `string` |  |
+| `from` | `string` |  |
+| `html_body` | `string` |  |
+| `id` | `string` |  |
+| `received_at` | `string` |  |
+| `subject` | `string` |  |
+| `to` | `string` |  |
 
 #### Example: Load
 
@@ -328,12 +347,16 @@ local message, err = client:Message():load({ id = "message_id" })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -350,8 +373,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -400,9 +424,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local email = client:Email()
-email:load({ id = "example_id" })
+email:load()
 
--- email:data_get() now returns the loaded email data
+-- email:data_get() now returns the email data from the last load
 -- email:match_get() returns the last match criteria
 ```
 

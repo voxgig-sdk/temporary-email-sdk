@@ -64,8 +64,13 @@ class MessageEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: MessageLoadMatch, ctrl=None) -> Message:
+    def load(self, reqmatch=None, ctrl=None) -> Message:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Message().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,

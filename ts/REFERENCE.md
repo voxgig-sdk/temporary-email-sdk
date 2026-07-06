@@ -140,9 +140,9 @@ const email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
+| `address` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `expires_at` | `string` | No |  |
 
 ### Operations
 
@@ -151,7 +151,7 @@ const email = client.Email()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Email().load({ id: 'email_id' })
+const result = await client.Email().load()
 ```
 
 ### Common Methods
@@ -192,8 +192,8 @@ const inbox = client.Inbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `message` | ``$ARRAY`` | No |  |
+| `address` | `string` | No |  |
+| `message` | `any[]` | No |  |
 
 ### Operations
 
@@ -243,14 +243,14 @@ const message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | ``$ARRAY`` | No |  |
-| `body` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `html_body` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `received_at` | ``$STRING`` | No |  |
-| `subject` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `attachment` | `any[]` | No |  |
+| `body` | `string` | No |  |
+| `from` | `string` | No |  |
+| `html_body` | `string` | No |  |
+| `id` | `string` | No |  |
+| `received_at` | `string` | No |  |
+| `subject` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 

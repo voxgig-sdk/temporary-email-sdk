@@ -25,7 +25,7 @@ Email = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Email#load (any subset of Email fields).
+# Request payload for Email#load.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
