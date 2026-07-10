@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -447,14 +444,17 @@
           "url": "https://github.com/l0v3m0n3y/temporarymail"
         },
         "description": "The Temporary Email API provides users with a way to generate temporary email addresses for secure and anonymous communication. Users can create, check, and manage temporary email addresses, allowing for the receipt of emails without exposing their actual email address.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://www.temporarymail.com"
           }
         ],
+        "summary": "The Temporary Email API provides users with a way to generate temporary email addresses for secure and anonymous communication.",
         "title": "Temporary Email API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://temporarymail.com"
       },
       "option": {},
       "target": {
@@ -507,6 +507,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -557,6 +560,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

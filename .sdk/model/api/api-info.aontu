@@ -15,9 +15,9 @@ main: {
           url: "https://www.temporarymail.com"
         }
       ]
+      summary: "The Temporary Email API provides users with a way to generate temporary email addresses for secure and anonymous communication."
       title: "Temporary Email API"
       version: "1.0.0"
+      website: "https://temporarymail.com"
     }
   }
-}
-

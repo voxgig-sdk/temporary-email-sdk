@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 email := client.Email(nil)
+fmt.Println(email.GetName()) // "email"
 ```
 
 ### Fields
@@ -117,6 +118,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Email(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 inbox := client.Inbox(nil)
+fmt.Println(inbox.GetName()) // "inbox"
 ```
 
 ### Fields
@@ -164,6 +170,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Inbox(nil).Load(map[string]any{"id": "inbox_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -194,6 +204,7 @@ Return the entity name.
 
 ```go
 message := client.Message(nil)
+fmt.Println(message.GetName()) // "message"
 ```
 
 ### Fields
@@ -217,6 +228,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Message(nil).Load(map[string]any{"id": "message_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
