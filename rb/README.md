@@ -34,7 +34,7 @@ client = TemporaryEmailSDK.new
 
 ```ruby
 begin
-  # load returns the bare Email record (raises on error).
+  # load returns the ENTITY — call data_get for the Email record (raises on error).
   email = client.Email.load()
   puts email
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TemporaryEmailSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 email = client.Email.load()
 puts email
 ```
@@ -249,7 +250,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `message` |  |
+| `messages` |  |
 
 Operations: Load.
 
@@ -259,7 +260,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `html_body` |  |
@@ -298,7 +299,7 @@ Create an instance: `email = client.Email`
 #### Example: Load
 
 ```ruby
-# load returns the bare Email record (raises on error).
+# load returns the ENTITY — call data_get for the Email record (raises on error).
 email = client.Email.load()
 ```
 
@@ -318,12 +319,12 @@ Create an instance: `inbox = client.Inbox`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `String` |  |
-| `message` | `Array` |  |
+| `messages` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Inbox record (raises on error).
+# load returns the ENTITY — call data_get for the Inbox record (raises on error).
 inbox = client.Inbox.load({ "id" => "inbox_id" })
 ```
 
@@ -342,7 +343,7 @@ Create an instance: `message = client.Message`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `Array` |  |
+| `attachments` | `Array` |  |
 | `body` | `String` |  |
 | `from` | `String` |  |
 | `html_body` | `String` |  |
@@ -354,7 +355,7 @@ Create an instance: `message = client.Message`
 #### Example: Load
 
 ```ruby
-# load returns the bare Message record (raises on error).
+# load returns the ENTITY — call data_get for the Message record (raises on error).
 message = client.Message.load({ "id" => "message_id" })
 ```
 

@@ -273,7 +273,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `"address"` |  |
-| `"message"` |  |
+| `"messages"` |  |
 
 Operations: Load.
 
@@ -283,7 +283,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `"attachment"` |  |
+| `"attachments"` |  |
 | `"body"` |  |
 | `"from"` |  |
 | `"html_body"` |  |
@@ -345,7 +345,7 @@ Create an instance: `inbox := client.Inbox(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `message` | `[]any` |  |
+| `messages` | `[]any` |  |
 
 #### Example: Load
 
@@ -372,7 +372,7 @@ Create an instance: `message := client.Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `[]any` |  |
+| `attachments` | `[]any` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `html_body` | `string` |  |

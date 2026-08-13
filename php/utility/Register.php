@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ TemporaryEmailUtility::setRegistrar(function (TemporaryEmailUtility $u): void {
     $u->prepare_params = [TemporaryEmailPrepareParams::class, 'call'];
     $u->prepare_path = [TemporaryEmailPreparePath::class, 'call'];
     $u->prepare_query = [TemporaryEmailPrepareQuery::class, 'call'];
+    $u->graphql_body = [TemporaryEmailGraphql::class, 'body'];
+    $u->graphql_errors = [TemporaryEmailGraphql::class, 'errors'];
     $u->result_basic = [TemporaryEmailResultBasic::class, 'call'];
     $u->result_body = [TemporaryEmailResultBody::class, 'call'];
     $u->result_headers = [TemporaryEmailResultHeaders::class, 'call'];

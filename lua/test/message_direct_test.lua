@@ -70,11 +70,11 @@ function message_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["TEMPORARYEMAIL_TEST_MESSAGE_ENTID"] = {},
-    ["TEMPORARYEMAIL_TEST_LIVE"] = "FALSE",
+    ["TEMPORARY_EMAIL_TEST_MESSAGE_ENTID"] = {},
+    ["TEMPORARY_EMAIL_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
+  local live = env["TEMPORARY_EMAIL_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

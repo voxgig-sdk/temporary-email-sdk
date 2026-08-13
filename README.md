@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TemporaryEmailSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TemporaryEmailSDK.test({
+  entity: {
+    email: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const email = await client.Email().load()
-// email is a bare Email populated with mock data
+// email is the Email entity, populated with mock data
+// — call email.data() for the record itself
 console.log(email)
 ```
 
@@ -184,7 +193,7 @@ require_once 'temporaryemail_sdk.php';
 $client = new TemporaryEmailSDK();
 
 
-// Load a specific email (returns the bare record; throws on error)
+// Load a specific email (returns the ENTITY; call data_get() for the record; throws on error)
 $email = $client->Email()->load();
 print_r($email);
 ```
@@ -212,7 +221,7 @@ require_relative "TemporaryEmail_sdk"
 client = TemporaryEmailSDK.new
 
 
-# Load a specific email (returns the bare record; raises on error)
+# Load a specific email (returns the ENTITY; call data_get for the record)
 email = client.Email.load()
 puts email
 ```
@@ -346,6 +355,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y/temporarymail](https://github.com/l0v3m0n3y/temporarymail)
 

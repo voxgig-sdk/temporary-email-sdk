@@ -19,7 +19,7 @@ export interface EmailLoadMatch {
 
 export interface Inbox {
   address?: string
-  message?: any[]
+  messages?: any[]
 }
 
 export interface InboxLoadMatch {
@@ -27,7 +27,7 @@ export interface InboxLoadMatch {
 }
 
 export interface Message {
-  attachment?: any[]
+  attachments?: any[]
   body?: string
   from?: string
   html_body?: string

@@ -38,7 +38,7 @@ client = TemporaryEmailSDK()
 
 ### 3. Load an email
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -122,7 +122,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TemporaryEmailSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 email = client.Email().load()
 # email contains the mock response record
 ```
@@ -220,7 +221,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -255,7 +256,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `message` |  |
+| `messages` |  |
 
 Operations: Load.
 
@@ -265,7 +266,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `html_body` |  |
@@ -323,7 +324,7 @@ Create an instance: `inbox = client.Inbox()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `str` |  |
-| `message` | `list` |  |
+| `messages` | `list` |  |
 
 #### Example: Load
 
@@ -346,7 +347,7 @@ Create an instance: `message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `list` |  |
+| `attachments` | `list` |  |
 | `body` | `str` |  |
 | `from` | `str` |  |
 | `html_body` | `str` |  |

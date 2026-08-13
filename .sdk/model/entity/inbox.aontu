@@ -11,7 +11,7 @@ main: kit: entity: inbox: {
       type: "`$STRING`"
     }
     {
-      name: "message"
+      name: "messages"
       req: false
       type: "`$ARRAY`"
     }

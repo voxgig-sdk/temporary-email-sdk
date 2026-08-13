@@ -18,13 +18,13 @@
 
 ---@class Inbox
 ---@field address? string
----@field message? table
+---@field messages? table
 
 ---@class InboxLoadMatch
 ---@field id string
 
 ---@class Message
----@field attachment? table
+---@field attachments? table
 ---@field body? string
 ---@field from? string
 ---@field html_body? string

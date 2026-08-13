@@ -149,7 +149,7 @@ inbox = client.Inbox()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
-| `message` | `list` | No |  |
+| `messages` | `list` | No |  |
 
 ### Operations
 
@@ -200,7 +200,7 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `list` | No |  |
+| `attachments` | `list` | No |  |
 | `body` | `str` | No |  |
 | `from` | `str` | No |  |
 | `html_body` | `str` | No |  |

@@ -26,7 +26,7 @@ class MessageEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set TEMPORARYEMAIL_TEST_MESSAGE_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set TEMPORARY_EMAIL_TEST_MESSAGE_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -45,7 +45,7 @@ class MessageEntityTest < Minitest::Test
       "id" => message_ref01_data["id"],
     }
     message_ref01_data_dt0_loaded = message_ref01_ent.load(message_ref01_match_dt0, nil)
-    message_ref01_data_dt0_load_result = Helpers.to_map(message_ref01_data_dt0_loaded)
+    message_ref01_data_dt0_load_result = Helpers.to_map(message_ref01_data_dt0_loaded.respond_to?(:data_get) ? message_ref01_data_dt0_loaded.data_get : message_ref01_data_dt0_loaded)
     assert !message_ref01_data_dt0_load_result.nil?
     assert_equal message_ref01_data_dt0_load_result["id"], message_ref01_data["id"]
 
@@ -78,22 +78,22 @@ def message_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["TEMPORARYEMAIL_TEST_MESSAGE_ENTID"]
+  entid_env_raw = ENV["TEMPORARY_EMAIL_TEST_MESSAGE_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "TEMPORARYEMAIL_TEST_MESSAGE_ENTID" => idmap,
-    "TEMPORARYEMAIL_TEST_LIVE" => "FALSE",
-    "TEMPORARYEMAIL_TEST_EXPLAIN" => "FALSE",
+    "TEMPORARY_EMAIL_TEST_MESSAGE_ENTID" => idmap,
+    "TEMPORARY_EMAIL_TEST_LIVE" => "FALSE",
+    "TEMPORARY_EMAIL_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["TEMPORARYEMAIL_TEST_MESSAGE_ENTID"])
+    env["TEMPORARY_EMAIL_TEST_MESSAGE_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
+  if env["TEMPORARY_EMAIL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -102,13 +102,13 @@ def message_basic_setup(extra)
     client = TemporaryEmailSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["TEMPORARYEMAIL_TEST_LIVE"] == "TRUE"
+  live = env["TEMPORARY_EMAIL_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["TEMPORARYEMAIL_TEST_EXPLAIN"] == "TRUE",
+    explain: env["TEMPORARY_EMAIL_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

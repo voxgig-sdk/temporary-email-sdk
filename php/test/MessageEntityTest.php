@@ -33,7 +33,7 @@ class MessageEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set TEMPORARYEMAIL_TEST_MESSAGE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set TEMPORARY_EMAIL_TEST_MESSAGE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -52,7 +52,7 @@ class MessageEntityTest extends TestCase
             "id" => $message_ref01_data["id"],
         ];
         $message_ref01_data_dt0_loaded = $message_ref01_ent->load($message_ref01_match_dt0, null);
-        $message_ref01_data_dt0_load_result = Helpers::to_map($message_ref01_data_dt0_loaded);
+        $message_ref01_data_dt0_load_result = Helpers::to_map(is_object($message_ref01_data_dt0_loaded) && method_exists($message_ref01_data_dt0_loaded, 'data_get') ? $message_ref01_data_dt0_loaded->data_get() : $message_ref01_data_dt0_loaded);
         $this->assertNotNull($message_ref01_data_dt0_load_result);
         $this->assertEquals($message_ref01_data_dt0_load_result["id"], $message_ref01_data["id"]);
 
@@ -81,22 +81,22 @@ function message_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("TEMPORARYEMAIL_TEST_MESSAGE_ENTID");
+    $entid_env_raw = getenv("TEMPORARY_EMAIL_TEST_MESSAGE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "TEMPORARYEMAIL_TEST_MESSAGE_ENTID" => $idmap,
-        "TEMPORARYEMAIL_TEST_LIVE" => "FALSE",
-        "TEMPORARYEMAIL_TEST_EXPLAIN" => "FALSE",
+        "TEMPORARY_EMAIL_TEST_MESSAGE_ENTID" => $idmap,
+        "TEMPORARY_EMAIL_TEST_LIVE" => "FALSE",
+        "TEMPORARY_EMAIL_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["TEMPORARYEMAIL_TEST_MESSAGE_ENTID"]);
+        $env["TEMPORARY_EMAIL_TEST_MESSAGE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["TEMPORARYEMAIL_TEST_LIVE"] === "TRUE") {
+    if ($env["TEMPORARY_EMAIL_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -105,13 +105,13 @@ function message_basic_setup($extra)
         $client = new TemporaryEmailSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["TEMPORARYEMAIL_TEST_LIVE"] === "TRUE";
+    $live = $env["TEMPORARY_EMAIL_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["TEMPORARYEMAIL_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["TEMPORARY_EMAIL_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

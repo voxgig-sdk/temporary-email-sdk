@@ -156,7 +156,7 @@ inbox = client.Inbox
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
-| `message` | `Array` | No |  |
+| `messages` | `Array` | No |  |
 
 ### Operations
 
@@ -208,7 +208,7 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `Array` | No |  |
+| `attachments` | `Array` | No |  |
 | `body` | `String` | No |  |
 | `from` | `String` | No |  |
 | `html_body` | `String` | No |  |

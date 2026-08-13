@@ -240,7 +240,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `message` |  |
+| `messages` |  |
 
 Operations: Load.
 
@@ -250,7 +250,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `html_body` |  |
@@ -308,7 +308,7 @@ Create an instance: `local inbox = client:Inbox(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `message` | `table` |  |
+| `messages` | `table` |  |
 
 #### Example: Load
 
@@ -331,7 +331,7 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `table` |  |
+| `attachments` | `table` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `html_body` | `string` |  |

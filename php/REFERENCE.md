@@ -155,7 +155,7 @@ $inbox = $client->Inbox();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `message` | `array` | No |  |
+| `messages` | `array` | No |  |
 
 ### Operations
 
@@ -207,7 +207,7 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `array` | No |  |
+| `attachments` | `array` | No |  |
 | `body` | `string` | No |  |
 | `from` | `string` | No |  |
 | `html_body` | `string` | No |  |

@@ -160,7 +160,7 @@ fmt.Println(inbox.GetName()) // "inbox"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `message` | `[]any` | No |  |
+| `messages` | `[]any` | No |  |
 
 ### Operations
 
@@ -211,7 +211,7 @@ fmt.Println(message.GetName()) // "message"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `[]any` | No |  |
+| `attachments` | `[]any` | No |  |
 | `body` | `string` | No |  |
 | `from` | `string` | No |  |
 | `html_body` | `string` | No |  |

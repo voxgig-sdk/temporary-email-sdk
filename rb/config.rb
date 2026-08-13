@@ -58,6 +58,7 @@ module TemporaryEmailConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/generate",
                   "parts" => [
@@ -90,7 +91,7 @@ module TemporaryEmailConfig
             },
             {
               "active" => true,
-              "name" => "message",
+              "name" => "messages",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -117,6 +118,7 @@ module TemporaryEmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/inbox/{address}",
                   "parts" => [
@@ -152,7 +154,7 @@ module TemporaryEmailConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "attachment",
+              "name" => "attachments",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -228,6 +230,7 @@ module TemporaryEmailConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/message/{messageId}",
                   "parts" => [

@@ -47,11 +47,11 @@ EmailLoadMatch = Struct.new(
 # @!attribute [rw] address
 #   @return [String, nil]
 #
-# @!attribute [rw] message
+# @!attribute [rw] messages
 #   @return [Array, nil]
 Inbox = Struct.new(
   :address,
-  :message,
+  :messages,
   keyword_init: true
 )
 
@@ -66,7 +66,7 @@ InboxLoadMatch = Struct.new(
 
 # Message entity data model.
 #
-# @!attribute [rw] attachment
+# @!attribute [rw] attachments
 #   @return [Array, nil]
 #
 # @!attribute [rw] body
@@ -90,7 +90,7 @@ InboxLoadMatch = Struct.new(
 # @!attribute [rw] to
 #   @return [String, nil]
 Message = Struct.new(
-  :attachment,
+  :attachments,
   :body,
   :from,
   :html_body,

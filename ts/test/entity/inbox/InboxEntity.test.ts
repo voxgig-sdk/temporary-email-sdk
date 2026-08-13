@@ -26,8 +26,8 @@ import {
 describe('InboxEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TEMPORARYEMAIL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TEMPORARYEMAIL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TEMPORARY_EMAIL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TEMPORARY_EMAIL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TemporaryEmailSDK.test()

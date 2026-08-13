@@ -65,11 +65,11 @@ function email_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "TEMPORARYEMAIL_TEST_EMAIL_ENTID" => [],
-        "TEMPORARYEMAIL_TEST_LIVE" => "FALSE",
+        "TEMPORARY_EMAIL_TEST_EMAIL_ENTID" => [],
+        "TEMPORARY_EMAIL_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["TEMPORARYEMAIL_TEST_LIVE"] === "TRUE";
+    $live = $env["TEMPORARY_EMAIL_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

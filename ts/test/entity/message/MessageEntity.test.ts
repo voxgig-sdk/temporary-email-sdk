@@ -26,8 +26,8 @@ import {
 describe('MessageEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TEMPORARYEMAIL_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TEMPORARYEMAIL_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TEMPORARY_EMAIL_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TEMPORARY_EMAIL_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TemporaryEmailSDK.test()
@@ -63,7 +63,7 @@ describe('MessageEntity', async () => {
     const message_ref01_ent = client.Message()
     const message_ref01_match_dt0: any = {}
     message_ref01_match_dt0.id = message_ref01_data.id
-    const message_ref01_data_dt0 = await message_ref01_ent.load(message_ref01_match_dt0)
+    const message_ref01_data_dt0 = (await message_ref01_ent.load(message_ref01_match_dt0)).data()
     assert(message_ref01_data_dt0.id === message_ref01_data.id)
 
 

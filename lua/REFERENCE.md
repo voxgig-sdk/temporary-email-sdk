@@ -153,7 +153,7 @@ local inbox = client:Inbox(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `message` | `table` | No |  |
+| `messages` | `table` | No |  |
 
 ### Operations
 
@@ -205,7 +205,7 @@ local message = client:Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `table` | No |  |
+| `attachments` | `table` | No |  |
 | `body` | `string` | No |  |
 | `from` | `string` | No |  |
 | `html_body` | `string` | No |  |

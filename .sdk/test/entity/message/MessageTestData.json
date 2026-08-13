@@ -2,7 +2,7 @@
   "existing": {
     "message": {
       "MESSAGE00": {
-        "attachment": [],
+        "attachments": [],
         "body": "s51",
         "from": "s52",
         "html_body": "s53",
@@ -12,7 +12,7 @@
         "to": "s57"
       },
       "MESSAGE01": {
-        "attachment": [],
+        "attachments": [],
         "body": "sa1",
         "from": "sa2",
         "html_body": "sa3",
@@ -22,7 +22,7 @@
         "to": "sa7"
       },
       "MESSAGE02": {
-        "attachment": [],
+        "attachments": [],
         "body": "sf1",
         "from": "sf2",
         "html_body": "sf3",
@@ -36,7 +36,7 @@
   "new": {
     "message": {
       "message_ref01": {
-        "attachment": [],
+        "attachments": [],
         "body": "s141",
         "from": "s142",
         "html_body": "s143",

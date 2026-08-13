@@ -193,7 +193,7 @@ const inbox = client.Inbox()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `message` | `any[]` | No |  |
+| `messages` | `any[]` | No |  |
 
 ### Operations
 
@@ -243,7 +243,7 @@ const message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachment` | `any[]` | No |  |
+| `attachments` | `any[]` | No |  |
 | `body` | `string` | No |  |
 | `from` | `string` | No |  |
 | `html_body` | `string` | No |  |

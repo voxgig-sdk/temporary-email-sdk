@@ -57,6 +57,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/generate",
                 ["parts"] = {
@@ -89,7 +90,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "message",
+            ["name"] = "messages",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -116,6 +117,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/inbox/{address}",
                 ["parts"] = {
@@ -151,7 +153,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "attachment",
+            ["name"] = "attachments",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -227,6 +229,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/message/{messageId}",
                 ["parts"] = {

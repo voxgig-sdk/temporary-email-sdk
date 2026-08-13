@@ -35,7 +35,7 @@ $client = new TemporaryEmailSDK();
 
 ```php
 try {
-    // load() returns the bare Email record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Email record (throws on error).
     $email = $client->Email()->load();
     print_r($email);
 } catch (\Throwable $err) {
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TemporaryEmailSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $email = $client->Email()->load();
 print_r($email);
 ```
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -259,7 +260,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `message` |  |
+| `messages` |  |
 
 Operations: Load.
 
@@ -269,7 +270,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `html_body` |  |
@@ -308,7 +309,7 @@ Create an instance: `$email = $client->Email();`
 #### Example: Load
 
 ```php
-// load() returns the bare Email record (throws on error).
+// load() returns the ENTITY — call data_get() for the Email record (throws on error).
 $email = $client->Email()->load();
 ```
 
@@ -328,12 +329,12 @@ Create an instance: `$inbox = $client->Inbox();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `message` | `array` |  |
+| `messages` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Inbox record (throws on error).
+// load() returns the ENTITY — call data_get() for the Inbox record (throws on error).
 $inbox = $client->Inbox()->load(["id" => "inbox_id"]);
 ```
 
@@ -352,7 +353,7 @@ Create an instance: `$message = $client->Message();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `array` |  |
+| `attachments` | `array` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `html_body` | `string` |  |
@@ -364,7 +365,7 @@ Create an instance: `$message = $client->Message();`
 #### Example: Load
 
 ```php
-// load() returns the bare Message record (throws on error).
+// load() returns the ENTITY — call data_get() for the Message record (throws on error).
 $message = $client->Message()->load(["id" => "message_id"]);
 ```
 

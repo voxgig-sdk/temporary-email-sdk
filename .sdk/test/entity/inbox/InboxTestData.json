@@ -3,17 +3,17 @@
     "inbox": {
       "INBOX00": {
         "address": "s14",
-        "message": [],
+        "messages": [],
         "id": "INBOX00"
       },
       "INBOX01": {
         "address": "s28",
-        "message": [],
+        "messages": [],
         "id": "INBOX01"
       },
       "INBOX02": {
         "address": "s3c",
-        "message": [],
+        "messages": [],
         "id": "INBOX02"
       }
     }
@@ -22,7 +22,7 @@
     "inbox": {
       "inbox_ref01": {
         "address": "s50",
-        "message": []
+        "messages": []
       }
     }
   }

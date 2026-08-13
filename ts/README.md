@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = TemporaryEmailSDK.test()
 
 const email = await client.Email().load()
-// email is a bare entity populated with mock response data
+// email is the entity, populated with mock response data
+// — call email.data() for the record itself
 console.log(email)
 ```
 
@@ -299,7 +300,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `message` |  |
+| `messages` |  |
 
 Operations: load.
 
@@ -309,7 +310,7 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachment` |  |
+| `attachments` |  |
 | `body` |  |
 | `from` |  |
 | `html_body` |  |
@@ -367,7 +368,7 @@ Create an instance: `const inbox = client.Inbox()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `message` | `any[]` |  |
+| `messages` | `any[]` |  |
 
 #### Example: Load
 
@@ -390,7 +391,7 @@ Create an instance: `const message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachment` | `any[]` |  |
+| `attachments` | `any[]` |  |
 | `body` | `string` |  |
 | `from` | `string` |  |
 | `html_body` | `string` |  |

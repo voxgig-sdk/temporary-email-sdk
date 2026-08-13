@@ -32,7 +32,7 @@ class EmailLoadMatch
 class Inbox
 {
     public ?string $address = null;
-    public ?array $message = null;
+    public ?array $messages = null;
 }
 
 /** Request payload for Inbox#load. */
@@ -44,7 +44,7 @@ class InboxLoadMatch
 /** Message entity data model. */
 class Message
 {
-    public ?array $attachment = null;
+    public ?array $attachments = null;
     public ?string $body = null;
     public ?string $from = null;
     public ?string $html_body = null;
