@@ -40,7 +40,7 @@ class TemporaryEmailSDK
         $utility = new TemporaryEmailUtility();
         $this->_utility = $utility;
 
-        $config = TemporaryEmailConfig::make_config();
+        $config = TemporaryEmailConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

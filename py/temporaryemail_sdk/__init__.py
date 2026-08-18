@@ -23,8 +23,8 @@ class TemporaryEmailSDK:
         utility = TemporaryEmailUtility()
         self._utility = utility
 
-        from temporaryemail_sdk.config import make_config
-        config = make_config()
+        from temporaryemail_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,
