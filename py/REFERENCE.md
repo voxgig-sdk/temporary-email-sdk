@@ -95,9 +95,9 @@ email = client.Email()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `str` | Yes |  |
-| `created_at` | `str` | No |  |
-| `expires_at` | `str` | No |  |
+| `address` | `str` | Yes | The generated temporary email address |
+| `created_at` | `str` | No | Timestamp when the email address was created |
+| `expires_at` | `str` | No | Timestamp when the email address will expire |
 
 ### Operations
 
@@ -148,8 +148,8 @@ inbox = client.Inbox()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `str` | No |  |
-| `messages` | `list` | No |  |
+| `address` | `str` | No | The temporary email address |
+| `messages` | `list` | No | List of messages in the inbox |
 
 ### Operations
 
@@ -200,14 +200,14 @@ message = client.Message()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `list` | No |  |
-| `body` | `str` | No |  |
-| `from` | `str` | No |  |
-| `html_body` | `str` | No |  |
-| `id` | `str` | No |  |
-| `received_at` | `str` | No |  |
-| `subject` | `str` | No |  |
-| `to` | `str` | No |  |
+| `attachments` | `list` | No | List of email attachments |
+| `body` | `str` | No | Full message body content |
+| `from` | `str` | No | Sender email address |
+| `html_body` | `str` | No | HTML version of the message body |
+| `id` | `str` | No | Unique identifier for the message |
+| `received_at` | `str` | No | Timestamp when the message was received |
+| `subject` | `str` | No | Email subject line |
+| `to` | `str` | No | Recipient email address |
 
 ### Operations
 

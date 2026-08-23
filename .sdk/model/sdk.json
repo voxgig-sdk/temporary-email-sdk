@@ -36,18 +36,21 @@
               "active": true,
               "name": "address",
               "req": true,
+              "short": "The generated temporary email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "created_at",
               "req": false,
+              "short": "Timestamp when the email address was created",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "expires_at",
               "req": false,
+              "short": "Timestamp when the email address will expire",
               "type": "`$STRING`"
             }
           ],
@@ -90,12 +93,14 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "The temporary email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "messages",
               "req": false,
+              "short": "List of messages in the inbox",
               "type": "`$ARRAY`"
             }
           ],
@@ -159,48 +164,56 @@
               "active": true,
               "name": "attachments",
               "req": false,
+              "short": "List of email attachments",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "body",
               "req": false,
+              "short": "Full message body content",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "from",
               "req": false,
+              "short": "Sender email address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "html_body",
               "req": false,
+              "short": "HTML version of the message body",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the message",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "received_at",
               "req": false,
+              "short": "Timestamp when the message was received",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "subject",
               "req": false,
+              "short": "Email subject line",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "to",
               "req": false,
+              "short": "Recipient email address",
               "type": "`$STRING`"
             }
           ],

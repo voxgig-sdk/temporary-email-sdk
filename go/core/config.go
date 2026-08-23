@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TemporaryEmail",
+			"slug": "temporary-email",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,14 +39,17 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "address",
 						"req": true,
+						"short": "The generated temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "created_at",
+						"short": "Timestamp when the email address was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "expires_at",
+						"short": "Timestamp when the email address will expire",
 						"type": "`$STRING`",
 					},
 				},
@@ -79,10 +85,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "The temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "messages",
+						"short": "List of messages in the inbox",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -138,34 +146,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "attachments",
+						"short": "List of email attachments",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "body",
+						"short": "Full message body content",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "from",
+						"short": "Sender email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "html_body",
+						"short": "HTML version of the message body",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the message",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "received_at",
+						"short": "Timestamp when the message was received",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "subject",
+						"short": "Email subject line",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "to",
+						"short": "Recipient email address",
 						"type": "`$STRING`",
 					},
 				},

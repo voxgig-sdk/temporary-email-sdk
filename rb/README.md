@@ -237,9 +237,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `created_at` |  |
-| `expires_at` |  |
+| `address` | The generated temporary email address |
+| `created_at` | Timestamp when the email address was created |
+| `expires_at` | Timestamp when the email address will expire |
 
 Operations: Load.
 
@@ -249,8 +249,8 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `messages` |  |
+| `address` | The temporary email address |
+| `messages` | List of messages in the inbox |
 
 Operations: Load.
 
@@ -260,14 +260,14 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `html_body` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Full message body content |
+| `from` | Sender email address |
+| `html_body` | HTML version of the message body |
+| `id` | Unique identifier for the message |
+| `received_at` | Timestamp when the message was received |
+| `subject` | Email subject line |
+| `to` | Recipient email address |
 
 Operations: Load.
 
@@ -292,9 +292,9 @@ Create an instance: `email = client.Email`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `created_at` | `String` |  |
-| `expires_at` | `String` |  |
+| `address` | `String` | The generated temporary email address |
+| `created_at` | `String` | Timestamp when the email address was created |
+| `expires_at` | `String` | Timestamp when the email address will expire |
 
 #### Example: Load
 
@@ -318,8 +318,8 @@ Create an instance: `inbox = client.Inbox`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `messages` | `Array` |  |
+| `address` | `String` | The temporary email address |
+| `messages` | `Array` | List of messages in the inbox |
 
 #### Example: Load
 
@@ -343,14 +343,14 @@ Create an instance: `message = client.Message`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `Array` |  |
-| `body` | `String` |  |
-| `from` | `String` |  |
-| `html_body` | `String` |  |
-| `id` | `String` |  |
-| `received_at` | `String` |  |
-| `subject` | `String` |  |
-| `to` | `String` |  |
+| `attachments` | `Array` | List of email attachments |
+| `body` | `String` | Full message body content |
+| `from` | `String` | Sender email address |
+| `html_body` | `String` | HTML version of the message body |
+| `id` | `String` | Unique identifier for the message |
+| `received_at` | `String` | Timestamp when the message was received |
+| `subject` | `String` | Email subject line |
+| `to` | `String` | Recipient email address |
 
 #### Example: Load
 

@@ -19,6 +19,9 @@ module TemporaryEmailConfig
     {
       "main" => {
         "name" => "TemporaryEmail",
+        "slug" => "temporary-email",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -44,14 +47,17 @@ module TemporaryEmailConfig
             {
               "name" => "address",
               "req" => true,
+              "short" => "The generated temporary email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "created_at",
+              "short" => "Timestamp when the email address was created",
               "type" => "`$STRING`",
             },
             {
               "name" => "expires_at",
+              "short" => "Timestamp when the email address will expire",
               "type" => "`$STRING`",
             },
           ],
@@ -87,10 +93,12 @@ module TemporaryEmailConfig
           "fields" => [
             {
               "name" => "address",
+              "short" => "The temporary email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "messages",
+              "short" => "List of messages in the inbox",
               "type" => "`$ARRAY`",
             },
           ],
@@ -146,34 +154,42 @@ module TemporaryEmailConfig
           "fields" => [
             {
               "name" => "attachments",
+              "short" => "List of email attachments",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "body",
+              "short" => "Full message body content",
               "type" => "`$STRING`",
             },
             {
               "name" => "from",
+              "short" => "Sender email address",
               "type" => "`$STRING`",
             },
             {
               "name" => "html_body",
+              "short" => "HTML version of the message body",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "Unique identifier for the message",
               "type" => "`$STRING`",
             },
             {
               "name" => "received_at",
+              "short" => "Timestamp when the message was received",
               "type" => "`$STRING`",
             },
             {
               "name" => "subject",
+              "short" => "Email subject line",
               "type" => "`$STRING`",
             },
             {
               "name" => "to",
+              "short" => "Recipient email address",
               "type" => "`$STRING`",
             },
           ],

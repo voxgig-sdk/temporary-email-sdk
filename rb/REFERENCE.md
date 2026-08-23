@@ -101,9 +101,9 @@ email = client.Email
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | Yes |  |
-| `created_at` | `String` | No |  |
-| `expires_at` | `String` | No |  |
+| `address` | `String` | Yes | The generated temporary email address |
+| `created_at` | `String` | No | Timestamp when the email address was created |
+| `expires_at` | `String` | No | Timestamp when the email address will expire |
 
 ### Operations
 
@@ -155,8 +155,8 @@ inbox = client.Inbox
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `messages` | `Array` | No |  |
+| `address` | `String` | No | The temporary email address |
+| `messages` | `Array` | No | List of messages in the inbox |
 
 ### Operations
 
@@ -208,14 +208,14 @@ message = client.Message
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `Array` | No |  |
-| `body` | `String` | No |  |
-| `from` | `String` | No |  |
-| `html_body` | `String` | No |  |
-| `id` | `String` | No |  |
-| `received_at` | `String` | No |  |
-| `subject` | `String` | No |  |
-| `to` | `String` | No |  |
+| `attachments` | `Array` | No | List of email attachments |
+| `body` | `String` | No | Full message body content |
+| `from` | `String` | No | Sender email address |
+| `html_body` | `String` | No | HTML version of the message body |
+| `id` | `String` | No | Unique identifier for the message |
+| `received_at` | `String` | No | Timestamp when the message was received |
+| `subject` | `String` | No | Email subject line |
+| `to` | `String` | No | Recipient email address |
 
 ### Operations
 

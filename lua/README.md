@@ -227,9 +227,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `created_at` |  |
-| `expires_at` |  |
+| `address` | The generated temporary email address |
+| `created_at` | Timestamp when the email address was created |
+| `expires_at` | Timestamp when the email address will expire |
 
 Operations: Load.
 
@@ -239,8 +239,8 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `messages` |  |
+| `address` | The temporary email address |
+| `messages` | List of messages in the inbox |
 
 Operations: Load.
 
@@ -250,14 +250,14 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `html_body` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Full message body content |
+| `from` | Sender email address |
+| `html_body` | HTML version of the message body |
+| `id` | Unique identifier for the message |
+| `received_at` | Timestamp when the message was received |
+| `subject` | Email subject line |
+| `to` | Recipient email address |
 
 Operations: Load.
 
@@ -282,9 +282,9 @@ Create an instance: `local email = client:Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `created_at` | `string` |  |
-| `expires_at` | `string` |  |
+| `address` | `string` | The generated temporary email address |
+| `created_at` | `string` | Timestamp when the email address was created |
+| `expires_at` | `string` | Timestamp when the email address will expire |
 
 #### Example: Load
 
@@ -307,8 +307,8 @@ Create an instance: `local inbox = client:Inbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `messages` | `table` |  |
+| `address` | `string` | The temporary email address |
+| `messages` | `table` | List of messages in the inbox |
 
 #### Example: Load
 
@@ -331,14 +331,14 @@ Create an instance: `local message = client:Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `table` |  |
-| `body` | `string` |  |
-| `from` | `string` |  |
-| `html_body` | `string` |  |
-| `id` | `string` |  |
-| `received_at` | `string` |  |
-| `subject` | `string` |  |
-| `to` | `string` |  |
+| `attachments` | `table` | List of email attachments |
+| `body` | `string` | Full message body content |
+| `from` | `string` | Sender email address |
+| `html_body` | `string` | HTML version of the message body |
+| `id` | `string` | Unique identifier for the message |
+| `received_at` | `string` | Timestamp when the message was received |
+| `subject` | `string` | Email subject line |
+| `to` | `string` | Recipient email address |
 
 #### Example: Load
 

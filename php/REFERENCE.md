@@ -100,9 +100,9 @@ $email = $client->Email();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | Yes |  |
-| `created_at` | `string` | No |  |
-| `expires_at` | `string` | No |  |
+| `address` | `string` | Yes | The generated temporary email address |
+| `created_at` | `string` | No | Timestamp when the email address was created |
+| `expires_at` | `string` | No | Timestamp when the email address will expire |
 
 ### Operations
 
@@ -154,8 +154,8 @@ $inbox = $client->Inbox();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `messages` | `array` | No |  |
+| `address` | `string` | No | The temporary email address |
+| `messages` | `array` | No | List of messages in the inbox |
 
 ### Operations
 
@@ -207,14 +207,14 @@ $message = $client->Message();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `array` | No |  |
-| `body` | `string` | No |  |
-| `from` | `string` | No |  |
-| `html_body` | `string` | No |  |
-| `id` | `string` | No |  |
-| `received_at` | `string` | No |  |
-| `subject` | `string` | No |  |
-| `to` | `string` | No |  |
+| `attachments` | `array` | No | List of email attachments |
+| `body` | `string` | No | Full message body content |
+| `from` | `string` | No | Sender email address |
+| `html_body` | `string` | No | HTML version of the message body |
+| `id` | `string` | No | Unique identifier for the message |
+| `received_at` | `string` | No | Timestamp when the message was received |
+| `subject` | `string` | No | Email subject line |
+| `to` | `string` | No | Recipient email address |
 
 ### Operations
 

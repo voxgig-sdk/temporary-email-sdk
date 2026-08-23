@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,9 +287,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `created_at` |  |
-| `expires_at` |  |
+| `address` | The generated temporary email address |
+| `created_at` | Timestamp when the email address was created |
+| `expires_at` | Timestamp when the email address will expire |
 
 Operations: load.
 
@@ -299,8 +299,8 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `messages` |  |
+| `address` | The temporary email address |
+| `messages` | List of messages in the inbox |
 
 Operations: load.
 
@@ -310,14 +310,14 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `html_body` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Full message body content |
+| `from` | Sender email address |
+| `html_body` | HTML version of the message body |
+| `id` | Unique identifier for the message |
+| `received_at` | Timestamp when the message was received |
+| `subject` | Email subject line |
+| `to` | Recipient email address |
 
 Operations: load.
 
@@ -342,9 +342,9 @@ Create an instance: `const email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `created_at` | `string` |  |
-| `expires_at` | `string` |  |
+| `address` | `string` | The generated temporary email address |
+| `created_at` | `string` | Timestamp when the email address was created |
+| `expires_at` | `string` | Timestamp when the email address will expire |
 
 #### Example: Load
 
@@ -367,8 +367,8 @@ Create an instance: `const inbox = client.Inbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `messages` | `any[]` |  |
+| `address` | `string` | The temporary email address |
+| `messages` | `any[]` | List of messages in the inbox |
 
 #### Example: Load
 
@@ -391,14 +391,14 @@ Create an instance: `const message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `any[]` |  |
-| `body` | `string` |  |
-| `from` | `string` |  |
-| `html_body` | `string` |  |
-| `id` | `string` |  |
-| `received_at` | `string` |  |
-| `subject` | `string` |  |
-| `to` | `string` |  |
+| `attachments` | `any[]` | List of email attachments |
+| `body` | `string` | Full message body content |
+| `from` | `string` | Sender email address |
+| `html_body` | `string` | HTML version of the message body |
+| `id` | `string` | Unique identifier for the message |
+| `received_at` | `string` | Timestamp when the message was received |
+| `subject` | `string` | Email subject line |
+| `to` | `string` | Recipient email address |
 
 #### Example: Load
 

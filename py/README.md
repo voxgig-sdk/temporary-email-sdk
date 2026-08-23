@@ -243,9 +243,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `created_at` |  |
-| `expires_at` |  |
+| `address` | The generated temporary email address |
+| `created_at` | Timestamp when the email address was created |
+| `expires_at` | Timestamp when the email address will expire |
 
 Operations: Load.
 
@@ -255,8 +255,8 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `messages` |  |
+| `address` | The temporary email address |
+| `messages` | List of messages in the inbox |
 
 Operations: Load.
 
@@ -266,14 +266,14 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `attachments` |  |
-| `body` |  |
-| `from` |  |
-| `html_body` |  |
-| `id` |  |
-| `received_at` |  |
-| `subject` |  |
-| `to` |  |
+| `attachments` | List of email attachments |
+| `body` | Full message body content |
+| `from` | Sender email address |
+| `html_body` | HTML version of the message body |
+| `id` | Unique identifier for the message |
+| `received_at` | Timestamp when the message was received |
+| `subject` | Email subject line |
+| `to` | Recipient email address |
 
 Operations: Load.
 
@@ -298,9 +298,9 @@ Create an instance: `email = client.Email()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `str` |  |
-| `created_at` | `str` |  |
-| `expires_at` | `str` |  |
+| `address` | `str` | The generated temporary email address |
+| `created_at` | `str` | Timestamp when the email address was created |
+| `expires_at` | `str` | Timestamp when the email address will expire |
 
 #### Example: Load
 
@@ -323,8 +323,8 @@ Create an instance: `inbox = client.Inbox()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `str` |  |
-| `messages` | `list` |  |
+| `address` | `str` | The temporary email address |
+| `messages` | `list` | List of messages in the inbox |
 
 #### Example: Load
 
@@ -347,14 +347,14 @@ Create an instance: `message = client.Message()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `list` |  |
-| `body` | `str` |  |
-| `from` | `str` |  |
-| `html_body` | `str` |  |
-| `id` | `str` |  |
-| `received_at` | `str` |  |
-| `subject` | `str` |  |
-| `to` | `str` |  |
+| `attachments` | `list` | List of email attachments |
+| `body` | `str` | Full message body content |
+| `from` | `str` | Sender email address |
+| `html_body` | `str` | HTML version of the message body |
+| `id` | `str` | Unique identifier for the message |
+| `received_at` | `str` | Timestamp when the message was received |
+| `subject` | `str` | Email subject line |
+| `to` | `str` | Recipient email address |
 
 #### Example: Load
 

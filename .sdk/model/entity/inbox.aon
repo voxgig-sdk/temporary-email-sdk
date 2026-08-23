@@ -8,11 +8,13 @@ main: kit: entity: inbox: {
     {
       name: "address"
       req: false
+      short: "The temporary email address"
       type: "`$STRING`"
     }
     {
       name: "messages"
       req: false
+      short: "List of messages in the inbox"
       type: "`$ARRAY`"
     }
   ]

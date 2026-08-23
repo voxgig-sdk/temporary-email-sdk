@@ -6,7 +6,7 @@ The Golang SDK for the TemporaryEmail API — an entity-oriented client using st
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Email(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,9 +260,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"created_at"` |  |
-| `"expires_at"` |  |
+| `"address"` | The generated temporary email address |
+| `"created_at"` | Timestamp when the email address was created |
+| `"expires_at"` | Timestamp when the email address will expire |
 
 Operations: Load.
 
@@ -272,8 +272,8 @@ API path: `/api/generate`
 
 | Field | Description |
 | --- | --- |
-| `"address"` |  |
-| `"messages"` |  |
+| `"address"` | The temporary email address |
+| `"messages"` | List of messages in the inbox |
 
 Operations: Load.
 
@@ -283,14 +283,14 @@ API path: `/api/inbox/{address}`
 
 | Field | Description |
 | --- | --- |
-| `"attachments"` |  |
-| `"body"` |  |
-| `"from"` |  |
-| `"html_body"` |  |
-| `"id"` |  |
-| `"received_at"` |  |
-| `"subject"` |  |
-| `"to"` |  |
+| `"attachments"` | List of email attachments |
+| `"body"` | Full message body content |
+| `"from"` | Sender email address |
+| `"html_body"` | HTML version of the message body |
+| `"id"` | Unique identifier for the message |
+| `"received_at"` | Timestamp when the message was received |
+| `"subject"` | Email subject line |
+| `"to"` | Recipient email address |
 
 Operations: Load.
 
@@ -315,9 +315,9 @@ Create an instance: `email := client.Email(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `created_at` | `string` |  |
-| `expires_at` | `string` |  |
+| `address` | `string` | The generated temporary email address |
+| `created_at` | `string` | Timestamp when the email address was created |
+| `expires_at` | `string` | Timestamp when the email address will expire |
 
 #### Example: Load
 
@@ -344,8 +344,8 @@ Create an instance: `inbox := client.Inbox(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `messages` | `[]any` |  |
+| `address` | `string` | The temporary email address |
+| `messages` | `[]any` | List of messages in the inbox |
 
 #### Example: Load
 
@@ -372,14 +372,14 @@ Create an instance: `message := client.Message(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `attachments` | `[]any` |  |
-| `body` | `string` |  |
-| `from` | `string` |  |
-| `html_body` | `string` |  |
-| `id` | `string` |  |
-| `received_at` | `string` |  |
-| `subject` | `string` |  |
-| `to` | `string` |  |
+| `attachments` | `[]any` | List of email attachments |
+| `body` | `string` | Full message body content |
+| `from` | `string` | Sender email address |
+| `html_body` | `string` | HTML version of the message body |
+| `id` | `string` | Unique identifier for the message |
+| `received_at` | `string` | Timestamp when the message was received |
+| `subject` | `string` | Email subject line |
+| `to` | `string` | Recipient email address |
 
 #### Example: Load
 

@@ -98,9 +98,9 @@ local email = client:Email(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | Yes |  |
-| `created_at` | `string` | No |  |
-| `expires_at` | `string` | No |  |
+| `address` | `string` | Yes | The generated temporary email address |
+| `created_at` | `string` | No | Timestamp when the email address was created |
+| `expires_at` | `string` | No | Timestamp when the email address will expire |
 
 ### Operations
 
@@ -152,8 +152,8 @@ local inbox = client:Inbox(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `messages` | `table` | No |  |
+| `address` | `string` | No | The temporary email address |
+| `messages` | `table` | No | List of messages in the inbox |
 
 ### Operations
 
@@ -205,14 +205,14 @@ local message = client:Message(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `attachments` | `table` | No |  |
-| `body` | `string` | No |  |
-| `from` | `string` | No |  |
-| `html_body` | `string` | No |  |
-| `id` | `string` | No |  |
-| `received_at` | `string` | No |  |
-| `subject` | `string` | No |  |
-| `to` | `string` | No |  |
+| `attachments` | `table` | No | List of email attachments |
+| `body` | `string` | No | Full message body content |
+| `from` | `string` | No | Sender email address |
+| `html_body` | `string` | No | HTML version of the message body |
+| `id` | `string` | No | Unique identifier for the message |
+| `received_at` | `string` | No | Timestamp when the message was received |
+| `subject` | `string` | No | Email subject line |
+| `to` | `string` | No | Recipient email address |
 
 ### Operations
 
