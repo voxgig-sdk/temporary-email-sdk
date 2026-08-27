@@ -2,26 +2,26 @@
   "existing": {
     "inbox": {
       "INBOX00": {
-        "address": "s14",
-        "messages": [],
-        "id": "INBOX00"
+        "address": "s1e",
+        "id": "INBOX00",
+        "messages": []
       },
       "INBOX01": {
-        "address": "s28",
-        "messages": [],
-        "id": "INBOX01"
+        "address": "s3c",
+        "id": "INBOX01",
+        "messages": []
       },
       "INBOX02": {
-        "address": "s3c",
-        "messages": [],
-        "id": "INBOX02"
+        "address": "s5a",
+        "id": "INBOX02",
+        "messages": []
       }
     }
   },
   "new": {
     "inbox": {
       "inbox_ref01": {
-        "address": "s50",
+        "address": "s78",
         "messages": []
       }
     }

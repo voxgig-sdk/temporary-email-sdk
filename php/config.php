@@ -42,6 +42,7 @@ class TemporaryEmailConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -108,6 +109,10 @@ class TemporaryEmailConfig
             [
               'name' => 'address',
               'short' => 'The temporary email address',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

@@ -48,9 +48,13 @@ class InboxEntityTest extends TestCase
 
         // LOAD
         $inbox_ref01_ent = $client->Inbox(null);
-        $inbox_ref01_match_dt0 = [];
+        $inbox_ref01_match_dt0 = [
+            "id" => $inbox_ref01_data["id"],
+        ];
         $inbox_ref01_data_dt0_loaded = $inbox_ref01_ent->load($inbox_ref01_match_dt0, null);
-        $this->assertNotNull($inbox_ref01_data_dt0_loaded);
+        $inbox_ref01_data_dt0_load_result = Helpers::to_map(is_object($inbox_ref01_data_dt0_loaded) && method_exists($inbox_ref01_data_dt0_loaded, 'data_get') ? $inbox_ref01_data_dt0_loaded->data_get() : $inbox_ref01_data_dt0_loaded);
+        $this->assertNotNull($inbox_ref01_data_dt0_load_result);
+        $this->assertEquals($inbox_ref01_data_dt0_load_result["id"], $inbox_ref01_data["id"]);
 
     }
 }

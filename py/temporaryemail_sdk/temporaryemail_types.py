@@ -33,6 +33,7 @@ class EmailLoadMatch(TypedDict, total=False):
 
 class Inbox(TypedDict, total=False):
     address: str
+    id: str
     messages: list
 
 

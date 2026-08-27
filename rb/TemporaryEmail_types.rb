@@ -47,10 +47,14 @@ EmailLoadMatch = Struct.new(
 # @!attribute [rw] address
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] messages
 #   @return [Array, nil]
 Inbox = Struct.new(
   :address,
+  :id,
   :messages,
   keyword_init: true
 )

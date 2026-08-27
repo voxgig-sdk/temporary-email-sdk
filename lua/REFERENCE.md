@@ -153,6 +153,7 @@ local inbox = client:Inbox(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No | The temporary email address |
+| `id` | `string` | No |  |
 | `messages` | `table` | No | List of messages in the inbox |
 
 ### Operations

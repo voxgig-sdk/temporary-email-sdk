@@ -18,6 +18,7 @@
 
 ---@class Inbox
 ---@field address? string
+---@field id? string
 ---@field messages? table
 
 ---@class InboxLoadMatch

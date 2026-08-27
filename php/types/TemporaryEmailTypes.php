@@ -32,6 +32,7 @@ class EmailLoadMatch
 class Inbox
 {
     public ?string $address = null;
+    public ?string $id = null;
     public ?array $messages = null;
 }
 

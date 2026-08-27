@@ -61,13 +61,19 @@ func TestInboxEntity(t *testing.T) {
 
 		// LOAD
 		inboxRef01Ent := client.Inbox(nil)
-		inboxRef01MatchDt0 := map[string]any{}
+		inboxRef01MatchDt0 := map[string]any{
+			"id": inboxRef01Data["id"],
+		}
 		inboxRef01DataDt0Loaded, err := inboxRef01Ent.Load(inboxRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if inboxRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		inboxRef01DataDt0LoadResult := core.ToMapAny(entityData(inboxRef01DataDt0Loaded))
+		if inboxRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if inboxRef01DataDt0LoadResult["id"] != inboxRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

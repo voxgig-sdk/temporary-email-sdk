@@ -250,6 +250,7 @@ API path: `/api/generate`
 | Field | Description |
 | --- | --- |
 | `address` | The temporary email address |
+| `id` |  |
 | `messages` | List of messages in the inbox |
 
 Operations: Load.
@@ -319,6 +320,7 @@ Create an instance: `inbox = client.Inbox`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `String` | The temporary email address |
+| `id` | `String` |  |
 | `messages` | `Array` | List of messages in the inbox |
 
 #### Example: Load

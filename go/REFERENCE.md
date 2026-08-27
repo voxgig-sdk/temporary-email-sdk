@@ -160,6 +160,7 @@ fmt.Println(inbox.GetName()) // "inbox"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No | The temporary email address |
+| `id` | `string` | No |  |
 | `messages` | `[]any` | No | List of messages in the inbox |
 
 ### Operations

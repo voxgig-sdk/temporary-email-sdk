@@ -19,6 +19,7 @@ export interface EmailLoadMatch {
 
 export interface Inbox {
   address?: string
+  id?: string
   messages?: any[]
 }
 

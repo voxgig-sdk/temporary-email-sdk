@@ -41,9 +41,13 @@ class InboxEntityTest < Minitest::Test
 
     # LOAD
     inbox_ref01_ent = client.Inbox(nil)
-    inbox_ref01_match_dt0 = {}
+    inbox_ref01_match_dt0 = {
+      "id" => inbox_ref01_data["id"],
+    }
     inbox_ref01_data_dt0_loaded = inbox_ref01_ent.load(inbox_ref01_match_dt0, nil)
-    assert !inbox_ref01_data_dt0_loaded.nil?
+    inbox_ref01_data_dt0_load_result = Helpers.to_map(inbox_ref01_data_dt0_loaded.respond_to?(:data_get) ? inbox_ref01_data_dt0_loaded.data_get : inbox_ref01_data_dt0_loaded)
+    assert !inbox_ref01_data_dt0_load_result.nil?
+    assert_equal inbox_ref01_data_dt0_load_result["id"], inbox_ref01_data["id"]
 
   end
 end

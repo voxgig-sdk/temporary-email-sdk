@@ -149,6 +149,7 @@ inbox = client.Inbox()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `str` | No | The temporary email address |
+| `id` | `str` | No |  |
 | `messages` | `list` | No | List of messages in the inbox |
 
 ### Operations

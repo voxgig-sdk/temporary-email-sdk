@@ -12,12 +12,22 @@ main: kit: entity: inbox: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "messages"
       req: false
       short: "List of messages in the inbox"
       type: "`$ARRAY`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "inbox"
   op: {
