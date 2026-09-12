@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -73,17 +84,20 @@ class Config {
     "email": {
       "fields": [
         {
+          "format": "email",
           "name": "address",
           "req": true,
           "short": "The generated temporary email address",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "created_at",
           "short": "Timestamp when the email address was created",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "expires_at",
           "short": "Timestamp when the email address will expire",
           "type": "`$STRING`"
@@ -100,15 +114,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/generate",
-              "parts": [
-                "api",
-                "generate"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "generate"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "generate"
+              ]
             }
           ]
         }
@@ -120,6 +142,7 @@ class Config {
     "inbox": {
       "fields": [
         {
+          "format": "email",
           "name": "address",
           "short": "The temporary email address",
           "type": "`$STRING`"
@@ -134,6 +157,10 @@ class Config {
           "type": "`$ARRAY`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "inbox",
       "op": {
         "load": {
@@ -155,16 +182,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/inbox/{address}",
-              "parts": [
-                "api",
-                "inbox",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "address": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "inbox"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -173,7 +206,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "inbox",
+                "{id}"
+              ]
             }
           ]
         }
@@ -195,6 +233,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "from",
           "short": "Sender email address",
           "type": "`$STRING`"
@@ -210,6 +249,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "received_at",
           "short": "Timestamp when the message was received",
           "type": "`$STRING`"
@@ -220,11 +260,16 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "to",
           "short": "Recipient email address",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "message",
       "op": {
         "load": {
@@ -246,16 +291,22 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/message/{messageId}",
-              "parts": [
-                "api",
-                "message",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "messageId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "message"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -264,7 +315,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "message",
+                "{id}"
+              ]
             }
           ]
         }
@@ -280,6 +336,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

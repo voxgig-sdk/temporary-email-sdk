@@ -18,6 +18,7 @@ main: kit: entity: message: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "from"
       req: false
       short: "Sender email address"
@@ -36,6 +37,7 @@ main: kit: entity: message: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "received_at"
       req: false
       short: "Timestamp when the message was received"
@@ -48,6 +50,7 @@ main: kit: entity: message: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "to"
       req: false
       short: "Recipient email address"
@@ -79,16 +82,22 @@ main: kit: entity: message: {
           }
           method: "GET"
           orig: "/api/message/{messageId}"
-          parts: [
-            "api"
-            "message"
-            "{id}"
-          ]
           rename: {
             param: {
               messageId: "id"
             }
           }
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "message"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

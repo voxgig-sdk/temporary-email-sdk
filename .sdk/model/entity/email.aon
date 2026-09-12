@@ -6,18 +6,21 @@ main: kit: entity: email: {
 
   fields: [
     {
+      format: "email"
       name: "address"
       req: true
       short: "The generated temporary email address"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "created_at"
       req: false
       short: "Timestamp when the email address was created"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expires_at"
       req: false
       short: "Timestamp when the email address will expire"
@@ -33,9 +36,13 @@ main: kit: entity: email: {
         {
           method: "GET"
           orig: "/api/generate"
-          parts: [
-            "api"
-            "generate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "generate"
+            }
           ]
           transform: {
             req: "`reqdata`"

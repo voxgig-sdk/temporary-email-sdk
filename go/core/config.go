@@ -38,17 +38,20 @@ func MakeConfig() map[string]any {
 			"email": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "email",
 						"name": "address",
 						"req": true,
 						"short": "The generated temporary email address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "created_at",
 						"short": "Timestamp when the email address was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "expires_at",
 						"short": "Timestamp when the email address will expire",
 						"type": "`$STRING`",
@@ -65,14 +68,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/generate",
-								"parts": []any{
-									"api",
-									"generate",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "generate",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"generate",
 								},
 							},
 						},
@@ -85,6 +96,7 @@ func MakeConfig() map[string]any {
 			"inbox": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "email",
 						"name": "address",
 						"short": "The temporary email address",
 						"type": "`$STRING`",
@@ -98,6 +110,10 @@ func MakeConfig() map[string]any {
 						"short": "List of messages in the inbox",
 						"type": "`$ARRAY`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "inbox",
 				"op": map[string]any{
@@ -120,14 +136,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/inbox/{address}",
-								"parts": []any{
-									"api",
-									"inbox",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"address": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "inbox",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -138,6 +160,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"inbox",
+									"{id}",
 								},
 							},
 						},
@@ -160,6 +187,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "email",
 						"name": "from",
 						"short": "Sender email address",
 						"type": "`$STRING`",
@@ -175,6 +203,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "received_at",
 						"short": "Timestamp when the message was received",
 						"type": "`$STRING`",
@@ -185,10 +214,15 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "email",
 						"name": "to",
 						"short": "Recipient email address",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "message",
 				"op": map[string]any{
@@ -211,14 +245,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/message/{messageId}",
-								"parts": []any{
-									"api",
-									"message",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"messageId": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "message",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -230,6 +270,11 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"api",
+									"message",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -240,6 +285,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

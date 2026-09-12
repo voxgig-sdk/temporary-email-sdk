@@ -1,6 +1,14 @@
 # TemporaryEmail SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -55,17 +63,20 @@ def make_config():
       "email": {
         "fields": [
           {
+            "format": "email",
             "name": "address",
             "req": True,
             "short": "The generated temporary email address",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "created_at",
             "short": "Timestamp when the email address was created",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "expires_at",
             "short": "Timestamp when the email address will expire",
             "type": "`$STRING`",
@@ -82,15 +93,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/generate",
-                "parts": [
-                  "api",
-                  "generate",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "generate",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "generate",
+                ],
               },
             ],
           },
@@ -102,6 +121,7 @@ def make_config():
       "inbox": {
         "fields": [
           {
+            "format": "email",
             "name": "address",
             "short": "The temporary email address",
             "type": "`$STRING`",
@@ -116,6 +136,10 @@ def make_config():
             "type": "`$ARRAY`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "inbox",
         "op": {
           "load": {
@@ -137,16 +161,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/inbox/{address}",
-                "parts": [
-                  "api",
-                  "inbox",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "address": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "inbox",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -156,6 +186,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "inbox",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -177,6 +212,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "from",
             "short": "Sender email address",
             "type": "`$STRING`",
@@ -192,6 +228,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "received_at",
             "short": "Timestamp when the message was received",
             "type": "`$STRING`",
@@ -202,11 +239,16 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "to",
             "short": "Recipient email address",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "message",
         "op": {
           "load": {
@@ -228,16 +270,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/message/{messageId}",
-                "parts": [
-                  "api",
-                  "message",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "messageId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "message",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -247,6 +295,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "message",
+                  "{id}",
+                ],
               },
             ],
           },
