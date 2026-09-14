@@ -105,7 +105,7 @@ local result, err = client:Email():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
+| TypeScript | `@voxgig-sdk/temporary-email-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
 | Python | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
 | PHP | `voxgig-sdk/temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/temporary-email-sdk/go` | `go get github.com/voxgig-sdk/temporary-email-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Email():load()
 ### TypeScript
 
 ```ts
-import { TemporaryEmailSDK } from '@voxgig-sdk/temporary-email'
+import { TemporaryEmailSDK } from '@voxgig-sdk/temporary-email-sdk'
 
 const client = new TemporaryEmailSDK()
 
