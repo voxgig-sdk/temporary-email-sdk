@@ -1,12 +1,18 @@
 # TemporaryEmail SDK feature factory
 
 from temporaryemail_sdk.feature.base_feature import TemporaryEmailBaseFeature
+from temporaryemail_sdk.feature.ratelimit_feature import TemporaryEmailRatelimitFeature
+from temporaryemail_sdk.feature.retry_feature import TemporaryEmailRetryFeature
 from temporaryemail_sdk.feature.test_feature import TemporaryEmailTestFeature
+from temporaryemail_sdk.feature.timeout_feature import TemporaryEmailTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TemporaryEmailBaseFeature(),
+    "ratelimit": lambda: TemporaryEmailRatelimitFeature(),
+    "retry": lambda: TemporaryEmailRetryFeature(),
     "test": lambda: TemporaryEmailTestFeature(),
+    "timeout": lambda: TemporaryEmailTimeoutFeature(),
 }
 
 

@@ -1,7 +1,10 @@
 # TemporaryEmail SDK feature factory
 
 require_relative 'feature/base_feature'
+require_relative 'feature/ratelimit_feature'
+require_relative 'feature/retry_feature'
 require_relative 'feature/test_feature'
+require_relative 'feature/timeout_feature'
 
 
 module TemporaryEmailFeatures
@@ -9,8 +12,14 @@ module TemporaryEmailFeatures
     case name
     when "base"
       TemporaryEmailBaseFeature.new
+    when "ratelimit"
+      TemporaryEmailRatelimitFeature.new
+    when "retry"
+      TemporaryEmailRetryFeature.new
     when "test"
       TemporaryEmailTestFeature.new
+    when "timeout"
+      TemporaryEmailTimeoutFeature.new
     else
       TemporaryEmailBaseFeature.new
     end

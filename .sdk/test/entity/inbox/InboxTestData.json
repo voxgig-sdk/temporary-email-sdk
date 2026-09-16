@@ -25,5 +25,117 @@
         "messages": []
       }
     }
+  },
+  "requests": {
+    "GET /api/inbox/{address}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getInbox",
+        "parameters": [
+          {
+            "description": "The temporary email address",
+            "in": "path",
+            "name": "address",
+            "required": true,
+            "schema": {
+              "format": "email",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "description": "The temporary email address",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "messages": {
+                      "description": "List of messages in the inbox",
+                      "items": {
+                        "properties": {
+                          "from": {
+                            "description": "Sender email address",
+                            "format": "email",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the message",
+                            "type": "string"
+                          },
+                          "preview": {
+                            "description": "Preview text of the message body",
+                            "type": "string"
+                          },
+                          "received_at": {
+                            "description": "Timestamp when the message was received",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "subject": {
+                            "description": "Email subject line",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully retrieved inbox messages"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code for categorizing the error",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Email address not found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code for categorizing the error",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { TemporaryEmailSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('MessageEntity', async () => {
 
     const live = 'TRUE' === process.env.TEMPORARY_EMAIL_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'message.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'message.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set TEMPORARY_EMAIL_TEST_MESSAGE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"attachments","req":false,"short":"List of email attachments","type":"`$ARRAY`","index$":0},{"active":true,"name":"body","req":false,"short":"Full message body content","type":"`$STRING`","index$":1},{"active":true,"format":"email","name":"from","req":false,"short":"Sender email address","type":"`$STRING`","index$":2},{"active":true,"name":"html_body","req":false,"short":"HTML version of the message body","type":"`$STRING`","index$":3},{"active":true,"name":"id","req":false,"short":"Unique identifier for the message","type":"`$STRING`","index$":4},{"active":true,"format":"date-time","name":"received_at","req":false,"short":"Timestamp when the message was received","type":"`$STRING`","index$":5},{"active":true,"name":"subject","req":false,"short":"Email subject line","type":"`$STRING`","index$":6},{"active":true,"format":"email","name":"to","req":false,"short":"Recipient email address","type":"`$STRING`","index$":7}],"id":{"field":"id","name":"id"},"name":"message","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"message_id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /api/message/{messageId}","json":"{\"operationId\":\"getMessage\",\"parameters\":[{\"description\":\"The unique identifier of the message\",\"in\":\"path\",\"name\":\"messageId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"attachments\":{\"description\":\"List of email attachments\",\"items\":{\"properties\":{\"content_type\":{\"description\":\"MIME type of the attachment\",\"type\":\"string\"},\"filename\":{\"description\":\"Name of the attached file\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the attachment in bytes\",\"type\":\"integer\"},\"url\":{\"description\":\"URL to download the attachment\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"body\":{\"description\":\"Full message body content\",\"type\":\"string\"},\"from\":{\"description\":\"Sender email address\",\"format\":\"email\",\"type\":\"string\"},\"html_body\":{\"description\":\"HTML version of the message body\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the message\",\"type\":\"string\"},\"received_at\":{\"description\":\"Timestamp when the message was received\",\"format\":\"date-time\",\"type\":\"string\"},\"subject\":{\"description\":\"Email subject line\",\"type\":\"string\"},\"to\":{\"description\":\"Recipient email address\",\"format\":\"email\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved message details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Message not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/api/message/{messageId}","rename":{"param":{"messageId":"id"}},"segments":[{"lit":"api"},{"lit":"message"},{"var":"id"}],"select":{"exist":["id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"message","name__orig":"message","Name":"Message","name_":"message","name-":"message","NAME":"MESSAGE","index$":2}, {"active":true,"entity":"message","key$":"BasicMessageFlow","kind":"basic","name":"BasicMessageFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"message_ref01","srcdatavar":"message_ref01_data","suffix":"_dt0"},"match":{"id":"message01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-message_ref01"}}],"index$":0}]}, 'Message')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['TEMPORARY_EMAIL_TEST_MESSAGE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'TEMPORARY_EMAIL_TEST_MESSAGE_ENTID': idmap,
     'TEMPORARY_EMAIL_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.TEMPORARY_EMAIL_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['TEMPORARY_EMAIL_TEST_MESSAGE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TemporaryEmailSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -139,7 +137,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -152,7 +151,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.TEMPORARY_EMAIL_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 
