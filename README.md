@@ -105,12 +105,12 @@ local result, err = client:Email():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/temporary-email-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
-| Python | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
-| PHP | `voxgig-sdk/temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
+| TypeScript | `@voxgig-sdk/temporary-email-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/tags) |
+| Python | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/tags) |
+| PHP | `voxgig-sdk/temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/temporary-email-sdk/go` | `go get github.com/voxgig-sdk/temporary-email-sdk/go@latest` |
-| Ruby | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
-| Lua | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/releases) |
+| Ruby | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/tags) |
+| Lua | `voxgig-sdk-temporary-email` | publish pending — [install from git tag](https://github.com/voxgig-sdk/temporary-email-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/temporary-email-sdk/go-cli` | `go install github.com/voxgig-sdk/temporary-email-sdk/go-cli/cmd/temporary-email@latest` |
 | Go MCP server | `github.com/voxgig-sdk/temporary-email-sdk/go-mcp` | `go get github.com/voxgig-sdk/temporary-email-sdk/go-mcp@latest` |
 

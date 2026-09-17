@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      email: {
-      },
-
-      inbox: {
-      },
-
-      message: {
-      },
-
+        email: {
+        },
+  
+        inbox: {
+        },
+  
+        message: {
+        },
+  
     }
   }
 
