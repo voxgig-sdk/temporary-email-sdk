@@ -1,7 +1,7 @@
 // Typed models for the TemporaryEmail SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,9 +14,6 @@ import (
 
 // Email is the typed data model for the email entity.
 type Email struct {
-	Address string `json:"address"`
-	CreatedAt *string `json:"created_at,omitempty"`
-	ExpiresAt *string `json:"expires_at,omitempty"`
 }
 
 // EmailLoadMatch is the typed request payload for Email.LoadTyped.
@@ -28,9 +25,6 @@ type EmailLoadMatch struct {
 
 // Inbox is the typed data model for the inbox entity.
 type Inbox struct {
-	Address *string `json:"address,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Messages *[]any `json:"messages,omitempty"`
 }
 
 // InboxLoadMatch is the typed request payload for Inbox.LoadTyped.
@@ -40,14 +34,6 @@ type InboxLoadMatch struct {
 
 // Message is the typed data model for the message entity.
 type Message struct {
-	Attachments *[]any `json:"attachments,omitempty"`
-	Body *string `json:"body,omitempty"`
-	From *string `json:"from,omitempty"`
-	HtmlBody *string `json:"html_body,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ReceivedAt *string `json:"received_at,omitempty"`
-	Subject *string `json:"subject,omitempty"`
-	To *string `json:"to,omitempty"`
 }
 
 // MessageLoadMatch is the typed request payload for Message.LoadTyped.

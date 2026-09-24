@@ -1,0 +1,130 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      sh: "List of email attachments"
+      t: "`$ARRAY`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "Full message body content"
+      t: "`$STRING`"
+    }
+    from: {
+      fo: "email"
+      h: "From"
+      n: "from"
+      r: false
+      sh: "Sender email address"
+      t: "`$STRING`"
+    }
+    html_body: {
+      h: "Html Body"
+      n: "html_body"
+      r: false
+      sh: "HTML version of the message body"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the message"
+      t: "`$STRING`"
+    }
+    received_at: {
+      fo: "date-time"
+      h: "Received At"
+      n: "received_at"
+      r: false
+      sh: "Timestamp when the message was received"
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "Email subject line"
+      t: "`$STRING`"
+    }
+    to: {
+      fo: "email"
+      h: "To"
+      n: "to"
+      r: false
+      sh: "Recipient email address"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "message"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/message/{messageId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "message_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/message/{messageId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              messageId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "message"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

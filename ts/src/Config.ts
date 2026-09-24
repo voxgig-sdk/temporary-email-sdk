@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -144,23 +137,26 @@ class Config {
     "email": {
       "fields": [
         {
-          "format": "email",
           "name": "address",
+          "title": "Address",
+          "type": "`$STRING`",
           "req": true,
           "short": "The generated temporary email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
-          "format": "date-time",
           "name": "created_at",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Timestamp when the email address was created",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "date-time",
           "name": "expires_at",
+          "title": "Expires At",
+          "type": "`$STRING`",
           "short": "Timestamp when the email address will expire",
-          "type": "`$STRING`"
+          "format": "date-time"
         }
       ],
       "name": "email",
@@ -170,7 +166,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/generate",
@@ -182,15 +177,17 @@ class Config {
                   "lit": "generate"
                 }
               ],
-              "select": {},
+              "parts": [
+                "api",
+                "generate"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api",
-                "generate"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -202,19 +199,22 @@ class Config {
     "inbox": {
       "fields": [
         {
-          "format": "email",
           "name": "address",
+          "title": "Address",
+          "type": "`$STRING`",
           "short": "The temporary email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         },
         {
           "name": "messages",
-          "short": "List of messages in the inbox",
-          "type": "`$ARRAY`"
+          "title": "Messages",
+          "type": "`$ARRAY`",
+          "short": "List of messages in the inbox"
         }
       ],
       "id": {
@@ -228,25 +228,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "address",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api/inbox/{address}",
-              "rename": {
-                "param": {
-                  "address": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "api"
@@ -258,20 +242,36 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "api",
+                "inbox",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "address": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api",
-                "inbox",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "address",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -284,46 +284,54 @@ class Config {
       "fields": [
         {
           "name": "attachments",
-          "short": "List of email attachments",
-          "type": "`$ARRAY`"
+          "title": "Attachments",
+          "type": "`$ARRAY`",
+          "short": "List of email attachments"
         },
         {
           "name": "body",
-          "short": "Full message body content",
-          "type": "`$STRING`"
+          "title": "Body",
+          "type": "`$STRING`",
+          "short": "Full message body content"
         },
         {
-          "format": "email",
           "name": "from",
+          "title": "From",
+          "type": "`$STRING`",
           "short": "Sender email address",
-          "type": "`$STRING`"
+          "format": "email"
         },
         {
           "name": "html_body",
-          "short": "HTML version of the message body",
-          "type": "`$STRING`"
+          "title": "Html Body",
+          "type": "`$STRING`",
+          "short": "HTML version of the message body"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the message",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier for the message"
         },
         {
-          "format": "date-time",
           "name": "received_at",
+          "title": "Received At",
+          "type": "`$STRING`",
           "short": "Timestamp when the message was received",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "subject",
-          "short": "Email subject line",
-          "type": "`$STRING`"
+          "title": "Subject",
+          "type": "`$STRING`",
+          "short": "Email subject line"
         },
         {
-          "format": "email",
           "name": "to",
+          "title": "To",
+          "type": "`$STRING`",
           "short": "Recipient email address",
-          "type": "`$STRING`"
+          "format": "email"
         }
       ],
       "id": {
@@ -337,25 +345,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "message_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api/message/{messageId}",
-              "rename": {
-                "param": {
-                  "messageId": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "api"
@@ -367,20 +359,36 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "api",
+                "message",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "messageId": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api",
-                "message",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "message_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }

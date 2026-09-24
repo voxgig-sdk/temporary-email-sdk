@@ -92,23 +92,26 @@ func MakeConfig() map[string]any {
 			"email": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "address",
+						"title": "Address",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The generated temporary email address",
-						"type": "`$STRING`",
+						"format": "email",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "created_at",
-						"short": "Timestamp when the email address was created",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the email address was created",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "expires_at",
-						"short": "Timestamp when the email address will expire",
+						"title": "Expires At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the email address will expire",
+						"format": "date-time",
 					},
 				},
 				"name": "email",
@@ -118,7 +121,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/generate",
@@ -130,15 +132,17 @@ func MakeConfig() map[string]any {
 										"lit": "generate",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"api",
 									"generate",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -150,19 +154,22 @@ func MakeConfig() map[string]any {
 			"inbox": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "email",
 						"name": "address",
-						"short": "The temporary email address",
+						"title": "Address",
 						"type": "`$STRING`",
+						"short": "The temporary email address",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "messages",
-						"short": "List of messages in the inbox",
+						"title": "Messages",
 						"type": "`$ARRAY`",
+						"short": "List of messages in the inbox",
 					},
 				},
 				"id": map[string]any{
@@ -176,25 +183,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "address",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/inbox/{address}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"address": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -206,19 +197,35 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"api",
+									"inbox",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"address": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api",
-									"inbox",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "address",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -232,46 +239,54 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "attachments",
-						"short": "List of email attachments",
+						"title": "Attachments",
 						"type": "`$ARRAY`",
+						"short": "List of email attachments",
 					},
 					map[string]any{
 						"name": "body",
-						"short": "Full message body content",
+						"title": "Body",
 						"type": "`$STRING`",
+						"short": "Full message body content",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "from",
-						"short": "Sender email address",
+						"title": "From",
 						"type": "`$STRING`",
+						"short": "Sender email address",
+						"format": "email",
 					},
 					map[string]any{
 						"name": "html_body",
-						"short": "HTML version of the message body",
+						"title": "Html Body",
 						"type": "`$STRING`",
+						"short": "HTML version of the message body",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the message",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the message",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "received_at",
-						"short": "Timestamp when the message was received",
+						"title": "Received At",
 						"type": "`$STRING`",
+						"short": "Timestamp when the message was received",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "subject",
-						"short": "Email subject line",
+						"title": "Subject",
 						"type": "`$STRING`",
+						"short": "Email subject line",
 					},
 					map[string]any{
-						"format": "email",
 						"name": "to",
-						"short": "Recipient email address",
+						"title": "To",
 						"type": "`$STRING`",
+						"short": "Recipient email address",
+						"format": "email",
 					},
 				},
 				"id": map[string]any{
@@ -285,25 +300,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "message_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/message/{messageId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"messageId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -315,19 +314,35 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"api",
+									"message",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"messageId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"api",
-									"message",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "message_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

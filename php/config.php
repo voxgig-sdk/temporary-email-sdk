@@ -114,23 +114,26 @@ class TemporaryEmailConfig
         'email' => [
           'fields' => [
             [
-              'format' => 'email',
               'name' => 'address',
+              'title' => 'Address',
+              'type' => '`$STRING`',
               'req' => true,
               'short' => 'The generated temporary email address',
-              'type' => '`$STRING`',
+              'format' => 'email',
             ],
             [
-              'format' => 'date-time',
               'name' => 'created_at',
-              'short' => 'Timestamp when the email address was created',
+              'title' => 'Created At',
               'type' => '`$STRING`',
+              'short' => 'Timestamp when the email address was created',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'expires_at',
-              'short' => 'Timestamp when the email address will expire',
+              'title' => 'Expires At',
               'type' => '`$STRING`',
+              'short' => 'Timestamp when the email address will expire',
+              'format' => 'date-time',
             ],
           ],
           'name' => 'email',
@@ -140,7 +143,6 @@ class TemporaryEmailConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/generate',
@@ -152,15 +154,17 @@ class TemporaryEmailConfig
                       'lit' => 'generate',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'api',
                     'generate',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -172,19 +176,22 @@ class TemporaryEmailConfig
         'inbox' => [
           'fields' => [
             [
-              'format' => 'email',
               'name' => 'address',
-              'short' => 'The temporary email address',
+              'title' => 'Address',
               'type' => '`$STRING`',
+              'short' => 'The temporary email address',
+              'format' => 'email',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'messages',
-              'short' => 'List of messages in the inbox',
+              'title' => 'Messages',
               'type' => '`$ARRAY`',
+              'short' => 'List of messages in the inbox',
             ],
           ],
           'id' => [
@@ -198,25 +205,9 @@ class TemporaryEmailConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'address',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/inbox/{address}',
-                  'rename' => [
-                    'param' => [
-                      'address' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'api',
@@ -228,19 +219,35 @@ class TemporaryEmailConfig
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'api',
+                    'inbox',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'address' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'api',
-                    'inbox',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'address',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],
@@ -254,46 +261,54 @@ class TemporaryEmailConfig
           'fields' => [
             [
               'name' => 'attachments',
-              'short' => 'List of email attachments',
+              'title' => 'Attachments',
               'type' => '`$ARRAY`',
+              'short' => 'List of email attachments',
             ],
             [
               'name' => 'body',
-              'short' => 'Full message body content',
+              'title' => 'Body',
               'type' => '`$STRING`',
+              'short' => 'Full message body content',
             ],
             [
-              'format' => 'email',
               'name' => 'from',
-              'short' => 'Sender email address',
+              'title' => 'From',
               'type' => '`$STRING`',
+              'short' => 'Sender email address',
+              'format' => 'email',
             ],
             [
               'name' => 'html_body',
-              'short' => 'HTML version of the message body',
+              'title' => 'Html Body',
               'type' => '`$STRING`',
+              'short' => 'HTML version of the message body',
             ],
             [
               'name' => 'id',
-              'short' => 'Unique identifier for the message',
+              'title' => 'Id',
               'type' => '`$STRING`',
+              'short' => 'Unique identifier for the message',
             ],
             [
-              'format' => 'date-time',
               'name' => 'received_at',
-              'short' => 'Timestamp when the message was received',
+              'title' => 'Received At',
               'type' => '`$STRING`',
+              'short' => 'Timestamp when the message was received',
+              'format' => 'date-time',
             ],
             [
               'name' => 'subject',
-              'short' => 'Email subject line',
+              'title' => 'Subject',
               'type' => '`$STRING`',
+              'short' => 'Email subject line',
             ],
             [
-              'format' => 'email',
               'name' => 'to',
-              'short' => 'Recipient email address',
+              'title' => 'To',
               'type' => '`$STRING`',
+              'short' => 'Recipient email address',
+              'format' => 'email',
             ],
           ],
           'id' => [
@@ -307,25 +322,9 @@ class TemporaryEmailConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'params' => [
-                      [
-                        'kind' => 'param',
-                        'name' => 'id',
-                        'orig' => 'message_id',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/message/{messageId}',
-                  'rename' => [
-                    'param' => [
-                      'messageId' => 'id',
-                    ],
-                  ],
                   'segments' => [
                     [
                       'lit' => 'api',
@@ -337,19 +336,35 @@ class TemporaryEmailConfig
                       'var' => 'id',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'id',
+                  'parts' => [
+                    'api',
+                    'message',
+                    '{id}',
+                  ],
+                  'rename' => [
+                    'param' => [
+                      'messageId' => 'id',
                     ],
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'api',
-                    'message',
-                    '{id}',
+                  'args' => [
+                    'params' => [
+                      [
+                        'name' => 'id',
+                        'orig' => 'message_id',
+                        'type' => '`$STRING`',
+                        'kind' => 'param',
+                        'reqd' => true,
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'id',
+                    ],
                   ],
                 ],
               ],

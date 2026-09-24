@@ -1,0 +1,66 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      fo: "email"
+      h: "Address"
+      n: "address"
+      r: true
+      sh: "The generated temporary email address"
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp when the email address was created"
+      t: "`$STRING`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "Timestamp when the email address will expire"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "email"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/generate"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/generate"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "generate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

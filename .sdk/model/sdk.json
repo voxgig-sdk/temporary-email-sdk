@@ -24,38 +24,107 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "email": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "email",
-              "name": "address",
-              "req": true,
-              "short": "The generated temporary email address",
-              "type": "`$STRING`"
+          "fields": {
+            "address": {
+              "a": true,
+              "fo": "email",
+              "h": "Address",
+              "n": "address",
+              "r": true,
+              "sh": "The generated temporary email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "created_at",
-              "req": false,
-              "short": "Timestamp when the email address was created",
-              "type": "`$STRING`"
+            "created_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Created At",
+              "n": "created_at",
+              "r": false,
+              "sh": "Timestamp when the email address was created",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "expires_at",
-              "req": false,
-              "short": "Timestamp when the email address will expire",
-              "type": "`$STRING`"
+            "expires_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Expires At",
+              "n": "expires_at",
+              "r": false,
+              "sh": "Timestamp when the email address will expire",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "email",
           "op": {
             "load": {
@@ -63,18 +132,19 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/generate",
-                    "json": "{\"operationId\":\"generateEmail\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"success\":{\"value\":{\"address\":\"temp123@temporarymail.com\",\"created_at\":\"2024-01-01T12:00:00Z\",\"expires_at\":\"2024-01-01T13:00:00Z\"}}},\"schema\":{\"properties\":{\"address\":{\"description\":\"The generated temporary email address\",\"format\":\"email\",\"type\":\"string\"},\"created_at\":{\"description\":\"Timestamp when the email address was created\",\"format\":\"date-time\",\"type\":\"string\"},\"expires_at\":{\"description\":\"Timestamp when the email address will expire\",\"format\":\"date-time\",\"type\":\"string\"}},\"required\":[\"address\"],\"type\":\"object\"}}},\"description\":\"Successfully generated temporary email address\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/generate",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/generate",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -82,8 +152,7 @@
                       "lit": "generate"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -100,29 +169,32 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "email",
-              "name": "address",
-              "req": false,
-              "short": "The temporary email address",
-              "type": "`$STRING`"
+          "fields": {
+            "address": {
+              "a": true,
+              "fo": "email",
+              "h": "Address",
+              "n": "address",
+              "r": false,
+              "sh": "The temporary email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "messages",
-              "req": false,
-              "short": "List of messages in the inbox",
-              "type": "`$ARRAY`"
+            "messages": {
+              "a": true,
+              "h": "Messages",
+              "n": "messages",
+              "r": false,
+              "sh": "List of messages in the inbox",
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -134,34 +206,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/inbox/{address}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "address",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "address",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/inbox/{address}",
-                    "json": "{\"operationId\":\"getInbox\",\"parameters\":[{\"description\":\"The temporary email address\",\"in\":\"path\",\"name\":\"address\",\"required\":true,\"schema\":{\"format\":\"email\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"address\":{\"description\":\"The temporary email address\",\"format\":\"email\",\"type\":\"string\"},\"messages\":{\"description\":\"List of messages in the inbox\",\"items\":{\"properties\":{\"from\":{\"description\":\"Sender email address\",\"format\":\"email\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the message\",\"type\":\"string\"},\"preview\":{\"description\":\"Preview text of the message body\",\"type\":\"string\"},\"received_at\":{\"description\":\"Timestamp when the message was received\",\"format\":\"date-time\",\"type\":\"string\"},\"subject\":{\"description\":\"Email subject line\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved inbox messages\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Email address not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/inbox/{address}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/inbox/{address}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "address": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -172,12 +248,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -194,67 +265,75 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "attachments",
-              "req": false,
-              "short": "List of email attachments",
-              "type": "`$ARRAY`"
+          "fields": {
+            "attachments": {
+              "a": true,
+              "h": "Attachments",
+              "n": "attachments",
+              "r": false,
+              "sh": "List of email attachments",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "body",
-              "req": false,
-              "short": "Full message body content",
-              "type": "`$STRING`"
+            "body": {
+              "a": true,
+              "h": "Body",
+              "n": "body",
+              "r": false,
+              "sh": "Full message body content",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "from",
-              "req": false,
-              "short": "Sender email address",
-              "type": "`$STRING`"
+            "from": {
+              "a": true,
+              "fo": "email",
+              "h": "From",
+              "n": "from",
+              "r": false,
+              "sh": "Sender email address",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "html_body",
-              "req": false,
-              "short": "HTML version of the message body",
-              "type": "`$STRING`"
+            "html_body": {
+              "a": true,
+              "h": "Html Body",
+              "n": "html_body",
+              "r": false,
+              "sh": "HTML version of the message body",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the message",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the message",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "received_at",
-              "req": false,
-              "short": "Timestamp when the message was received",
-              "type": "`$STRING`"
+            "received_at": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Received At",
+              "n": "received_at",
+              "r": false,
+              "sh": "Timestamp when the message was received",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "subject",
-              "req": false,
-              "short": "Email subject line",
-              "type": "`$STRING`"
+            "subject": {
+              "a": true,
+              "h": "Subject",
+              "n": "subject",
+              "r": false,
+              "sh": "Email subject line",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "email",
-              "name": "to",
-              "req": false,
-              "short": "Recipient email address",
-              "type": "`$STRING`"
+            "to": {
+              "a": true,
+              "fo": "email",
+              "h": "To",
+              "n": "to",
+              "r": false,
+              "sh": "Recipient email address",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -266,34 +345,38 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/message/{messageId}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "message_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "message_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/message/{messageId}",
-                    "json": "{\"operationId\":\"getMessage\",\"parameters\":[{\"description\":\"The unique identifier of the message\",\"in\":\"path\",\"name\":\"messageId\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"attachments\":{\"description\":\"List of email attachments\",\"items\":{\"properties\":{\"content_type\":{\"description\":\"MIME type of the attachment\",\"type\":\"string\"},\"filename\":{\"description\":\"Name of the attached file\",\"type\":\"string\"},\"size\":{\"description\":\"Size of the attachment in bytes\",\"type\":\"integer\"},\"url\":{\"description\":\"URL to download the attachment\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"body\":{\"description\":\"Full message body content\",\"type\":\"string\"},\"from\":{\"description\":\"Sender email address\",\"format\":\"email\",\"type\":\"string\"},\"html_body\":{\"description\":\"HTML version of the message body\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the message\",\"type\":\"string\"},\"received_at\":{\"description\":\"Timestamp when the message was received\",\"format\":\"date-time\",\"type\":\"string\"},\"subject\":{\"description\":\"Email subject line\",\"type\":\"string\"},\"to\":{\"description\":\"Recipient email address\",\"format\":\"email\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved message details\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Message not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code for categorizing the error\",\"type\":\"string\"},\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/message/{messageId}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/message/{messageId}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "messageId": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -304,12 +387,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -738,17 +816,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "email_ref01",
                 "srcdatavar": "email_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -768,19 +846,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "inbox_ref01",
                 "srcdatavar": "inbox_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "inbox01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -800,19 +878,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "message_ref01",
                 "srcdatavar": "message_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "message01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
