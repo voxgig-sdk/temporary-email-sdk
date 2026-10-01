@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/temporary-email-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/temporary-email-sdk/releases](https://github.com/voxgig-sdk/temporary-email-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/temporary-email-sdk
+composer config repositories.temporary-email-sdk path ./temporary-email-sdk/php
+composer require voxgig-sdk/temporary-email-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

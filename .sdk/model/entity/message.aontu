@@ -87,7 +87,7 @@ main: kit: entity: message: {
               {
                 k: "param"
                 n: "id"
-                or: "message_id"
+                or: "messageId"
                 r: true
                 t: "`$STRING`"
               }

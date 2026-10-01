@@ -340,7 +340,7 @@ module TemporaryEmailConfig
                     "params" => [
                       {
                         "name" => "id",
-                        "orig" => "message_id",
+                        "orig" => "messageId",
                         "type" => "`$STRING`",
                         "kind" => "param",
                         "reqd" => true,

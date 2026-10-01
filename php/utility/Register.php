@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TemporaryEmailUtility::setRegistrar(function (TemporaryEmailUtility $u): void {
     $u->clean = [TemporaryEmailClean::class, 'call'];
+    $u->clean_add = [TemporaryEmailClean::class, 'add'];
+    $u->clean_explain = [TemporaryEmailDone::class, 'clean_explain'];
     $u->done = [TemporaryEmailDone::class, 'call'];
     $u->make_error = [TemporaryEmailMakeError::class, 'call'];
     $u->feature_add = [TemporaryEmailFeatureAdd::class, 'call'];
