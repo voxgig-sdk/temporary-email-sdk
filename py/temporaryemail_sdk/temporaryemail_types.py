@@ -41,14 +41,16 @@ class InboxLoadMatch(TypedDict):
     id: str
 
 
-class Message(TypedDict, total=False):
-    attachments: list
-    body: str
-    html_body: str
-    id: str
-    received_at: str
-    subject: str
-    to: str
+Message = TypedDict('Message', {
+    "attachments": list,
+    "body": str,
+    "from": str,
+    "html_body": str,
+    "id": str,
+    "received_at": str,
+    "subject": str,
+    "to": str,
+}, total=False)
 
 
 class MessageLoadMatch(TypedDict):

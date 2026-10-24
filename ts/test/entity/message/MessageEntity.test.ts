@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { TemporaryEmailSDK, BaseFeature, stdutil } from '../../..'
+import { TemporaryEmailSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('MessageEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TemporaryEmailSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Message().load({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TEMPORARY_EMAIL_TEST_LIVE
@@ -51,7 +63,7 @@ describe('MessageEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"attachments":{"a":true,"h":"Attachments","n":"attachments","r":false,"sh":"List of email attachments","t":"`$ARRAY`","key$":"attachments","index$":0},"body":{"a":true,"h":"Body","n":"body","r":false,"sh":"Full message body content","t":"`$STRING`","key$":"body","index$":1},"from":{"a":true,"fo":"email","h":"From","n":"from","r":false,"sh":"Sender email address","t":"`$STRING`","key$":"from","index$":2},"html_body":{"a":true,"h":"Html Body","n":"html_body","r":false,"sh":"HTML version of the message body","t":"`$STRING`","key$":"html_body","index$":3},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the message","t":"`$STRING`","key$":"id","index$":4},"received_at":{"a":true,"fo":"date-time","h":"Received At","n":"received_at","r":false,"sh":"Timestamp when the message was received","t":"`$STRING`","key$":"received_at","index$":5},"subject":{"a":true,"h":"Subject","n":"subject","r":false,"sh":"Email subject line","t":"`$STRING`","key$":"subject","index$":6},"to":{"a":true,"fo":"email","h":"To","n":"to","r":false,"sh":"Recipient email address","t":"`$STRING`","key$":"to","index$":7}},"id":{"field":"id","name":"id"},"name":"message","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/message/{messageId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"messageId","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/api/message/{messageId}","q":{"exist":["id"]},"r":{"param":{"messageId":"id"}},"s":[{"lit":"api"},{"lit":"message"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"message","name__orig":"message","Name":"Message","name_":"message","name-":"message","NAME":"MESSAGE","index$":2}, {"active":true,"entity":"message","key$":"BasicMessageFlow","kind":"basic","name":"BasicMessageFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"message_ref01","srcdatavar":"message_ref01_data","suffix":"_dt0"},"m":{"id":"message01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-message_ref01"}}],"index$":0}]}, 'Message', {"GET /api/message/{messageId}":{"protocol":"http","parameters":[{"name":"messageId","in":"path","required":true,"description":"The unique identifier of the message","schema":{"type":"string"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"attachments":{"a":true,"h":"Attachments","n":"attachments","r":false,"sh":"List of email attachments","t":"`$ARRAY`","key$":"attachments","index$":0},"body":{"a":true,"h":"Body","n":"body","r":false,"sh":"Full message body content","t":"`$STRING`","key$":"body","index$":1},"from":{"a":true,"fo":"email","h":"From","n":"from","r":false,"sh":"Sender email address","t":"`$STRING`","key$":"from","index$":2},"html_body":{"a":true,"h":"Html Body","n":"html_body","r":false,"sh":"HTML version of the message body","t":"`$STRING`","key$":"html_body","index$":3},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the message","t":"`$STRING`","key$":"id","index$":4},"received_at":{"a":true,"fo":"date-time","h":"Received At","n":"received_at","r":false,"sh":"Timestamp when the message was received","t":"`$STRING`","key$":"received_at","index$":5},"subject":{"a":true,"h":"Subject","n":"subject","r":false,"sh":"Email subject line","t":"`$STRING`","key$":"subject","index$":6},"to":{"a":true,"fo":"email","h":"To","n":"to","r":false,"sh":"Recipient email address","t":"`$STRING`","key$":"to","index$":7}},"id":{"field":"id","name":"id"},"name":"message","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/message/{messageId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"messageId","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/api/message/{messageId}","q":{"exist":["id"]},"r":{"param":{"messageId":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"message"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"message","name__orig":"message","Name":"Message","name_":"message","name-":"message","NAME":"MESSAGE","index$":2}, {"active":true,"entity":"message","key$":"BasicMessageFlow","kind":"basic","name":"BasicMessageFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"message_ref01","srcdatavar":"message_ref01_data","suffix":"_dt0"},"m":{"id":"message01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-message_ref01"}}],"index$":0}]}, 'Message', {"GET /api/message/{messageId}":{"protocol":"http","parameters":[{"name":"messageId","in":"path","required":true,"description":"The unique identifier of the message","schema":{"type":"string"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('MessageEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

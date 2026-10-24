@@ -3,5 +3,24 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Full message body content",
+      "HTML version of the message body",
+      "List of email attachments",
+      "List of messages in the inbox",
+      "Production server",
+      "Sender email address",
+      "Successfully generated temporary email address",
+      "Successfully retrieved inbox messages",
+      "Successfully retrieved message details",
+      "The Temporary Email API provides users with a way to generate temporary email addresses for secure and anonymous communication. Users can create, check, and manage temporary email addresses, allowing for the receipt of emails without exposing their actual email address.",
+      "The generated temporary email address",
+      "The temporary email address",
+      "Timestamp when the email address was created",
+      "Timestamp when the email address will expire",
+      "Unique identifier for the message"
+    ]
+  }
 }

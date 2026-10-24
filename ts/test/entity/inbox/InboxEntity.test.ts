@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { TemporaryEmailSDK, BaseFeature, stdutil } from '../../..'
+import { TemporaryEmailSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('InboxEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TemporaryEmailSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Inbox().load({"id":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TEMPORARY_EMAIL_TEST_LIVE
@@ -51,7 +63,7 @@ describe('InboxEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"address":{"a":true,"fo":"email","h":"Address","n":"address","r":false,"sh":"The temporary email address","t":"`$STRING`","key$":"address","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":1},"messages":{"a":true,"h":"Messages","n":"messages","r":false,"sh":"List of messages in the inbox","t":"`$ARRAY`","key$":"messages","index$":2}},"id":{"field":"id","name":"id"},"name":"inbox","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/inbox/{address}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"address","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/api/inbox/{address}","q":{"exist":["id"]},"r":{"param":{"address":"id"}},"s":[{"lit":"api"},{"lit":"inbox"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"inbox","name__orig":"inbox","Name":"Inbox","name_":"inbox","name-":"inbox","NAME":"INBOX","index$":1}, {"active":true,"entity":"inbox","key$":"BasicInboxFlow","kind":"basic","name":"BasicInboxFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"inbox_ref01","srcdatavar":"inbox_ref01_data","suffix":"_dt0"},"m":{"id":"inbox01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-inbox_ref01"}}],"index$":0}]}, 'Inbox', {"GET /api/inbox/{address}":{"protocol":"http","parameters":[{"name":"address","in":"path","required":true,"description":"The temporary email address","schema":{"type":"string","format":"email"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"address":{"a":true,"fo":"email","h":"Address","n":"address","r":false,"sh":"The temporary email address","t":"`$STRING`","key$":"address","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":1},"messages":{"a":true,"h":"Messages","n":"messages","r":false,"sh":"List of messages in the inbox","t":"`$ARRAY`","key$":"messages","index$":2}},"id":{"field":"id","name":"id"},"name":"inbox","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/inbox/{address}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"address","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/api/inbox/{address}","q":{"exist":["id"]},"r":{"param":{"address":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"inbox"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"inbox","name__orig":"inbox","Name":"Inbox","name_":"inbox","name-":"inbox","NAME":"INBOX","index$":1}, {"active":true,"entity":"inbox","key$":"BasicInboxFlow","kind":"basic","name":"BasicInboxFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"inbox_ref01","srcdatavar":"inbox_ref01_data","suffix":"_dt0"},"m":{"id":"inbox01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-inbox_ref01"}}],"index$":0}]}, 'Inbox', {"GET /api/inbox/{address}":{"protocol":"http","parameters":[{"name":"address","in":"path","required":true,"description":"The temporary email address","schema":{"type":"string","format":"email"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('InboxEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

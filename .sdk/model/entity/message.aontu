@@ -105,6 +105,10 @@ main: kit: entity: message: {
               messageId: "id"
             }
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"

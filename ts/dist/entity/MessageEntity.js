@@ -84,9 +84,12 @@ class MessageEntity extends TemporaryEmailEntityBase_1.TemporaryEmailEntityBase 
         catch (err) {
             // What a hook throws here must not escape the cleaning below.
             try {
-                fres = featureHook(ctx, 'PreUnexpected');
-                if (fres instanceof Promise) {
-                    await fres;
+                // Once per operation: makeError fires it for its own error.
+                if (!ctx.unexpectedFired) {
+                    fres = featureHook(ctx, 'PreUnexpected');
+                    if (fres instanceof Promise) {
+                        await fres;
+                    }
                 }
             }
             catch (hookerr) {
@@ -98,7 +101,7 @@ class MessageEntity extends TemporaryEmailEntityBase_1.TemporaryEmailEntityBase 
             }
             else {
                 // Off-happy-path (throw disabled): typed as any so the method's
-                // Promise<Message> return stays clean under strict null checks.
+                // Promise<MessageEntity> return stays clean under strict null checks.
                 return undefined;
             }
         }

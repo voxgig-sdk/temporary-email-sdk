@@ -44,6 +44,10 @@ main: kit: entity: email: {
           }
           m: "GET"
           o: "/api/generate"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "api"
